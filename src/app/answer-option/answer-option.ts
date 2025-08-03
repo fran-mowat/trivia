@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-answer-option',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './answer-option.scss'
 })
 export class AnswerOption {
-
+  @Input() optionNumber!: string; 
+  @Input() answer: string = "";
 }

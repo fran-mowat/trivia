@@ -9,5 +9,7 @@ import { AnswerOption } from "../answer-option/answer-option";
   styleUrl: './question-card.scss'
 })
 export class QuestionCard {
-
+  optionNumberValues: Array<string> = ["A", "B", "C", "D"];
+  questionValue: string = "question...";
+  answerValues: Array<string> = ["option 1", "number 2", "3", "last answer"];
 }
