@@ -2,4 +2,19 @@
     margin: 20px;
     border: 1px solid var(--dark-grey);
     border-radius: 5px;
+    width: 40%;
+
+    input{
+        border: 1px solid var(--dark-grey);
+        border-radius: 5px;
+        padding: 8px 15px;
+        margin: 15px 15px;
+        width: calc(100% - 30px);
+        box-sizing: border-box;
+    }
+
+    input:hover{
+        background-color: var(--light-grey);
+    }
+
 }
