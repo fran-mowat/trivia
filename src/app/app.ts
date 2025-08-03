@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { Question } from "./question/question";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Question],
   templateUrl: './app.html',
-  styleUrl: './app.sass'
+  styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('trivia');
 }
