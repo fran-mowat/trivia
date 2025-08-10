@@ -7,11 +7,21 @@ div{
     transition: background-color 0.2s, border-color 0.2s;
 }
 
-div:hover{
+:not(.correct, .incorrect):hover{
     background-color: var(--light-blue);
     border-color: var(--dark-blue);
 }
 
 div.selected{
     background-color: var(--mid-grey);
+}
+
+.correct{
+    border-color: var(--green);
+    background-color: var(--light-green);
+}
+
+.incorrect{
+    border-color: var(--red);
+    background-color: var(--light-red);
 }
