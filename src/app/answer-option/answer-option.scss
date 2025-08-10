@@ -7,3 +7,7 @@ div{
 div:hover{
     background-color: var(--light-grey);
 }
+
+div.selected{
+    background-color: var(--dark-grey);
+}
