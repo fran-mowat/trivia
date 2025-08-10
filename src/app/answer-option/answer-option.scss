@@ -2,10 +2,14 @@ div{
     font-size: 16px;
     padding: 20px 16px;
     cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid var(--dark-blue-faded);
+    transition: background-color 0.2s, border-color 0.2s;
 }
 
 div:hover{
-    background-color: var(--light-grey);
+    background-color: var(--light-blue);
+    border-color: var(--dark-blue);
 }
 
 div.selected{

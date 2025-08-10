@@ -1,13 +1,13 @@
 <div class="question-card">
     <div class="question">{{ this.questionValue }}</div>
 
-    <div>
+    <div class="answers">
         <app-answer-option [optionNumber]="optionNumberValues[0]" [answer]="answerValues[0]" (click)="changeSelectedAnswer(0)"></app-answer-option>
         <app-answer-option [optionNumber]="optionNumberValues[1]" [answer]="answerValues[1]" (click)="changeSelectedAnswer(1)"></app-answer-option>
         <app-answer-option [optionNumber]="optionNumberValues[2]" [answer]="answerValues[2]" (click)="changeSelectedAnswer(2)"></app-answer-option>
         <app-answer-option [optionNumber]="optionNumberValues[3]" [answer]="answerValues[3]" (click)="changeSelectedAnswer(3)"></app-answer-option>
     </div>
 
-    <input type="button" value="Next" />
+    <input type="button" value="Next" class="hidden" />
 
 </div>
