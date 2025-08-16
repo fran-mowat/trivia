@@ -19,14 +19,19 @@ export class QuestionCard {
   state: "ready" | "answered" = "ready";
 
   selectAnswer(answerNumber: number): void {
+    this.selectedAnswer = answerNumber;
+    this.state = "answered";
     const options = document.getElementsByTagName("app-answer-option");
 
-    this.selectedAnswer = answerNumber;
-    const newSelectedAnswer = options[this.selectedAnswer].firstChild as HTMLElement; 
-    newSelectedAnswer.classList.add("selected");
-
-    this.state = "answered";
-  }
+    for (let i = 0; i < options.length; i++){
+      let answerOption = options[i].firstChild as HTMLElement; 
+      if (i === this.selectedAnswer){
+        answerOption.classList.add("correct");
+      } else {
+        answerOption.classList.add("disabled");
+      }
+    };
+  };
 
   changeQuestion(): void {
     this.state = "ready";
@@ -38,6 +43,5 @@ export class QuestionCard {
       let answerValue = answerOption.firstChild as HTMLElement; 
       answerValue.classList = "";
     });
-
-  }
-}
+  };
+};
