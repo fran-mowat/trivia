@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-question-card',
-  imports: [AnswerOption],
+  imports: [AnswerOption, CommonModule],
   templateUrl: './question-card.html',
   styleUrl: './question-card.scss'
 })
@@ -15,15 +16,15 @@ export class QuestionCard {
   score: number = 0;
   questionNumber: number = 0; 
   questionCount: number = 10; 
+  state: "ready" | "answered" = "ready";
 
-  changeSelectedAnswer(newSelection: number): void {
+  selectAnswer(answerNumber: number): void {
     const options = document.getElementsByTagName("app-answer-option");
 
-    const oldSelectedAnswer = options[this.selectedAnswer].firstChild as HTMLElement;
-    oldSelectedAnswer.classList.remove("selected");
-
-    this.selectedAnswer = newSelection;
+    this.selectedAnswer = answerNumber;
     const newSelectedAnswer = options[this.selectedAnswer].firstChild as HTMLElement; 
     newSelectedAnswer.classList.add("selected");
+
+    this.state = "answered";
   }
 }
