@@ -19,6 +19,8 @@ export class QuestionCard {
   state: "ready" | "answered" = "ready";
 
   selectAnswer(answerNumber: number): void {
+    console.log(this.getQuestions());
+
     if (! this.answerSelected){
       this.answerSelected = true;
       this.state = "answered";
@@ -57,5 +59,17 @@ export class QuestionCard {
     .then(data => {
       return data["token"];
     })
+  };
+
+  async getQuestions(): Promise<Array<Object>> {
+    return this.getToken().then((token) => {
+      return fetch(`https://opentdb.com/api.php?amount=10&type=multiple&token=${token}`)
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          return data.results;
+        });
+    }); 
   };
 };
