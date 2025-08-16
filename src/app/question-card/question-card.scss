@@ -5,6 +5,16 @@
     width: 500px;
     padding: 30px;
 
+    .progress-banner{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--dark-grey);
+        padding: 5px 10px 15px;
+        font-size: 18px;
+    }
+
     .question{
         margin: 40px auto 30px;
         text-align: center;
