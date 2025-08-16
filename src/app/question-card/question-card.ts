@@ -27,4 +27,17 @@ export class QuestionCard {
 
     this.state = "answered";
   }
+
+  changeQuestion(): void {
+    this.state = "ready";
+    this.answerValues = ["new option 1", "new number 2", "new 3", "new no 4"];
+    this.questionNumber++; 
+
+    const options = document.getElementsByTagName("app-answer-option");
+    Array.from(options).forEach(answerOption => {
+      let answerValue = answerOption.firstChild as HTMLElement; 
+      answerValue.classList = "";
+    });
+
+  }
 }
