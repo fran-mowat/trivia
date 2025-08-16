@@ -1,7 +1,7 @@
 <div class="question-card">
     <div class="progress-banner">
-        <div>Question 5 of 10</div>
-        <div>Score: 0</div>
+        <div>Question {{ this.questionNumber }} of {{ this.questionCount }}</div>
+        <div>Score: {{ this.score }}</div>
     </div>
 
     <div class="question">{{ this.questionValue }}</div>

@@ -12,6 +12,9 @@ export class QuestionCard {
   questionValue: string = "question...";
   answerValues: Array<string> = ["option 1", "number 2", "3", "last answer"];
   selectedAnswer: number = 0; 
+  score: number = 0;
+  questionNumber: number = 0; 
+  questionCount: number = 10; 
 
   changeSelectedAnswer(newSelection: number): void {
     const options = document.getElementsByTagName("app-answer-option");
