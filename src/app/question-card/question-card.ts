@@ -53,13 +53,23 @@ export class QuestionCard {
 
   setQuestion() {
     let nextQuestion = this.questions[this.questionNumber - 1];
-    this.questionValue = nextQuestion["question"];
+    this.questionValue = this.decodeHTML(nextQuestion["question"]);
 
     let answers = nextQuestion["incorrect_answers"];
     this.correctAnswerIndex = Math.floor(Math.random() * 4); 
     answers.splice(this.correctAnswerIndex, 0, nextQuestion["correct_answer"]);
 
+    answers.forEach((answer, i) => {
+      answers[i] = this.decodeHTML(answer);
+    });
+    
     this.answerValues = answers;
+  };
+
+  decodeHTML(encodedValue: string): string {
+    const parser = new DOMParser(); 
+    const decodedString = parser.parseFromString(encodedValue, "text/html").documentElement.textContent || ""; 
+    return decodedString;
   };
 
   selectAnswer(answerNumber: number): void {
