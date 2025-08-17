@@ -1,0 +1,24 @@
+.summary-card{
+    margin: 20px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 5px;
+    width: 500px;
+    padding: 30px;
+
+    input{
+        font-size: 16px;
+        font-family: inherit;
+        background-color: var(--dark-blue);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 0 20px;
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+    }
+
+    input:hover{
+        background-color: var(--dark-blue-hover);
+    }
+}
