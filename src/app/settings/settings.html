@@ -6,7 +6,7 @@
 
     <div>
         <label for="category" class="header">Select category:</label>
-        <select [(ngModel)]="category" id="category" name="category">
+        <select [(ngModel)]="categoryCode" id="category" name="category">
             @for (option of categoryOptions; track option.id) {
                 <option [value]="option.id">{{option.name}}</option>
             }
@@ -29,7 +29,7 @@
     </div>
     
     <div>
-        <input type="button" value="Start">
+        <input type="button" value="Start" (click)="constructApiUrl()">
     </div>
 
 </div>

@@ -10,20 +10,35 @@ import { FormsModule } from '@angular/forms';
 })
 export class Settings {
   questionCount: number = 15; 
-  category: string = "any";
+  categoryCode: number = 0;
   difficulty: string = "mixed";
 
   categoryOptions = [
-    {id: "any", name: "Any Category"}, 
-    {id: "generalKnowledge", name: "General Knowledge"}, 
-    {id: "sports", name: "Sports"}, 
-    {id: "geography", name: "Geography"}, 
-    {id: "history", name: "History"}, 
-    {id: "science", name: "Science & Nature"}, 
-    {id: "computers", name: "Computers"}, 
-    {id: "mathematics", name: "Mathematics"}, 
-    {id: "politics", name: "Politics"}, 
-    {id: "mythology", name: "Mythology"}, 
-    {id: "animals", name: "Animals"}
+    {id: 0, name: "Any Category"}, 
+    {id: 9, name: "General Knowledge"},     
+    {id: 21, name: "Sports"}, 
+    {id: 22, name: "Geography"}, 
+    {id: 23, name: "History"}, 
+    {id: 17, name: "Science & Nature"}, 
+    {id: 18, name: "Computers"}, 
+    {id: 19, name: "Mathematics"}, 
+    {id: 24, name: "Politics"}, 
+    {id: 20, name: "Mythology"}, 
+    {id: 27, name: "Animals"}, 
+    {id: 25, name: "Art"} 
   ];
+
+  constructApiUrl(){
+    let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
+
+    if (this.difficulty !== "mixed"){
+      url += `&difficulty=${this.difficulty}`;
+    }
+
+    if (this.categoryCode !== 0){
+      url += `&category=${this.categoryCode}`;
+    }
+
+    console.log(url);
+  };
 };
