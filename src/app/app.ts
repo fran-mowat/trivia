@@ -11,15 +11,11 @@ import { SummaryCard } from './summary-card/summary-card';
   styleUrl: './app.scss'
 })
 export class App {
-  screenMode: "settings" | "questions" | "review" = "settings";
+  screenMode: "settings" | "questions" | "review" = "review";
   url: string = "";
 
   startQuestions(url: string){
     this.screenMode = "questions";
     this.url = url; 
-  };
-
-  startSummary(){
-    this.screenMode = "review";
   };
 };
