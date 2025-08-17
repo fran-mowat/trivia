@@ -13,6 +13,8 @@
         <app-answer-option [optionNumber]="optionNumberValues[3]" [answer]="answerValues[3]" (click)="selectAnswer(3)"></app-answer-option>
     </div>
 
-    <input *ngIf="this.state === 'answered'" type="button" value="Next" (click)="changeQuestion()" />
+    @if (state === 'answered') {
+        <input type="button" value="Next" (click)="changeQuestion()" />
+    }
 
 </div>
