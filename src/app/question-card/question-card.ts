@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
 import { CommonModule } from '@angular/common';
+import { Question } from "./question";
 
 @Component({
   selector: 'app-question-card',
@@ -10,17 +11,25 @@ import { CommonModule } from '@angular/common';
 })
 export class QuestionCard {
   optionNumberValues: Array<string> = ["A", "B", "C", "D"];
-  questionValue: string = "question...";
-  answerValues: Array<string> = ["option 1", "number 2", "3", "last answer"];
+
+  questionValue: string = "";
+  answerValues: Array<string> = [];
+  correctAnswerIndex: number = 0;
+  questions: Array<Question> = [];
+  token: string = "";
+
   answerSelected: boolean = false; 
   score: number = 0;
-  questionNumber: number = 0; 
+  questionNumber: number = 1; 
   questionCount: number = 10; 
   state: "ready" | "answered" = "ready";
 
-  selectAnswer(answerNumber: number): void {
-    console.log(this.getQuestions());
+  constructor() {
+    this.getToken();
+    this.getQuestions();
+  }
 
+  selectAnswer(answerNumber: number): void {
     if (! this.answerSelected){
       this.answerSelected = true;
       this.state = "answered";
@@ -40,8 +49,8 @@ export class QuestionCard {
 
   changeQuestion(): void {
     this.state = "ready";
-    this.answerValues = ["new option 1", "new number 2", "new 3", "new no 4"];
-    this.questionNumber++; 
+    this.questionNumber++;
+    this.setQuestion();
     this.answerSelected = false; 
 
     const options = document.getElementsByTagName("app-answer-option");
@@ -51,25 +60,45 @@ export class QuestionCard {
     });
   };
 
-  async getToken(): Promise<string> {
-    return fetch("https://opentdb.com/api_token.php?command=request")
+  async getToken() {
+    await fetch("https://opentdb.com/api_token.php?command=request")
     .then(response => {
       return response.json();
     })
     .then(data => {
-      return data["token"];
+      this.token = data["token"];
     })
   };
 
-  async getQuestions(): Promise<Array<Object>> {
-    return this.getToken().then((token) => {
-      return fetch(`https://opentdb.com/api.php?amount=10&type=multiple&token=${token}`)
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          return data.results;
-        });
-    }); 
+  async getQuestions() {    
+    fetch(`https://opentdb.com/api.php?amount=10&type=multiple&token=${this.token}`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        this.questions = data.results;
+
+        this.setQuestion();
+
+        let firstQuestion = data.results[0];
+        this.questionValue = firstQuestion["question"];
+
+        let answers = firstQuestion["incorrect_answers"];
+        this.correctAnswerIndex = Math.floor(Math.random() * 4); 
+        answers.splice(this.correctAnswerIndex, 0, firstQuestion["correct_answer"]);
+
+        this.answerValues = answers;
+      }); 
+  };
+
+  setQuestion() {
+    let nextQuestion = this.questions[this.questionNumber - 1];
+    this.questionValue = nextQuestion["question"];
+
+    let answers = nextQuestion["incorrect_answers"];
+    this.correctAnswerIndex = Math.floor(Math.random() * 4); 
+    answers.splice(this.correctAnswerIndex, 0, nextQuestion["correct_answer"]);
+
+    this.answerValues = answers;
   };
 };
