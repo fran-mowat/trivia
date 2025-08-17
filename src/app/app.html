@@ -3,6 +3,8 @@
     <app-settings (triggerQuestions)="startQuestions($event)"></app-settings>
   } @else if (screenMode === "questions") {
     <app-question-card [apiUrl]="url"></app-question-card>
+  } @else if (screenMode === "review") {
+    <app-summary-card></app-summary-card>
   }
   
 </main>
