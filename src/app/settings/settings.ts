@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -28,6 +28,8 @@ export class Settings {
     {id: 25, name: "Art"} 
   ];
 
+  @Output() triggerQuestions = new EventEmitter<string>(); 
+
   constructApiUrl(){
     let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
 
@@ -39,6 +41,6 @@ export class Settings {
       url += `&category=${this.categoryCode}`;
     }
 
-    console.log(url);
+    this.triggerQuestions.emit(url);
   };
 };

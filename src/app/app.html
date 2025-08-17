@@ -1,5 +1,10 @@
 <main class="main">
-  <app-question-card></app-question-card>
+  @if (screenMode === "settings") {
+    <app-settings (triggerQuestions)="startQuestions($event)"></app-settings>
+  } @else if (screenMode === "questions") {
+    <app-question-card [apiUrl]="url"></app-question-card>
+  }
+  
 </main>
 
 <router-outlet />

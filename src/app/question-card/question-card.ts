@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
 import { CommonModule } from '@angular/common';
 import { Question } from "./question";
@@ -10,6 +10,8 @@ import { Question } from "./question";
   styleUrl: './question-card.scss'
 })
 export class QuestionCard {
+  @Input() apiUrl!: string; 
+
   optionNumberValues: Array<string> = ["A", "B", "C", "D"];
 
   questionValue: string = "";
@@ -25,8 +27,14 @@ export class QuestionCard {
   state: "ready" | "answered" = "ready";
 
   constructor() {
-    this.getToken();
-    this.getQuestions();
+    const interval = setInterval(() => {
+      if (this.apiUrl){
+        clearInterval(interval);
+        this.getToken();
+        this.getQuestions();
+      }
+    }, 100);
+    
   };
 
   async getToken() {
@@ -39,8 +47,8 @@ export class QuestionCard {
     })
   };
 
-  async getQuestions() {    
-    fetch(`https://opentdb.com/api.php?amount=10&type=multiple&token=${this.token}`)
+  async getQuestions() {
+    fetch(`${this.apiUrl}&token=${this.token}`)
       .then(response => {
         return response.json();
       })
