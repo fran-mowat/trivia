@@ -1,39 +1,30 @@
 <div class="settings">
     <div>
         <label for="question-count" class="header">Number of questions: </label>
-        <input type="number" min="10" max="50" value="15" step="5" id="question-count">
+        <input type="number" min="10" max="50" value="15" step="5" id="question-count" [(ngModel)]="questionCount">
     </div>
 
     <div>
         <label for="category" class="header">Select category:</label>
-        <select name="category" id="category">
-            <option value="any" selected>Any Category</option>
-            <option value="general-knowledge">General Knowledge</option>
-            <option value="sports">Sports</option>
-            <option value="geography">Geography</option>
-            <option value="history">History</option>
-            <option value="science">Science & Nature</option>
-            <option value="computers">Computers</option>
-            <option value="mathematics">Mathematics</option>
-            <option value="art">Art</option>
-            <option value="politics">Politics</option>
-            <option value="mythology">Mythology</option>
-            <option value="animals">Animals</option>
+        <select [(ngModel)]="category" id="category" name="category">
+            @for (option of categoryOptions; track option.id) {
+                <option [value]="option.id">{{option.name}}</option>
+            }
         </select>
     </div>
 
     <div class="difficulty">
         <div class="header label">Select difficulty:</div>
-        <input type="radio" name="difficulty" id="easy" value="easy">
+        <input type="radio" name="difficulty" id="easy" value="easy" [(ngModel)]="difficulty">
         <label for="easy">Easy</label>
         <br>
-        <input type="radio" name="difficulty" id="medium" value="medium">
+        <input type="radio" name="difficulty" id="medium" value="medium" [(ngModel)]="difficulty">
         <label for="medium">Medium</label>
         <br>
-        <input type="radio" name="difficulty" id="hard" value="hard">
+        <input type="radio" name="difficulty" id="hard" value="hard" [(ngModel)]="difficulty">
         <label for="hard">Hard</label>
         <br>
-        <input type="radio" name="difficulty" id="mixed" value="mixed" checked>
+        <input type="radio" name="difficulty" id="mixed" value="mixed" checked [(ngModel)]="difficulty">
         <label for="mixed">Mixed</label>
     </div>
     
