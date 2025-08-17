@@ -27,37 +27,6 @@ export class QuestionCard {
   constructor() {
     this.getToken();
     this.getQuestions();
-  }
-
-  selectAnswer(answerNumber: number): void {
-    if (! this.answerSelected){
-      this.answerSelected = true;
-      this.state = "answered";
-      const options = document.getElementsByTagName("app-answer-option");
-
-      for (let i = 0; i < options.length; i++){
-        let answerOption = options[i].firstChild as HTMLElement; 
-        if (i === answerNumber){
-          answerOption.classList.add("correct");
-          this.score++;
-        } else {
-          answerOption.classList.add("disabled");
-        }
-      };
-    };
-  };
-
-  changeQuestion(): void {
-    this.state = "ready";
-    this.questionNumber++;
-    this.setQuestion();
-    this.answerSelected = false; 
-
-    const options = document.getElementsByTagName("app-answer-option");
-    Array.from(options).forEach(answerOption => {
-      let answerValue = answerOption.firstChild as HTMLElement; 
-      answerValue.classList = "";
-    });
   };
 
   async getToken() {
@@ -79,15 +48,6 @@ export class QuestionCard {
         this.questions = data.results;
 
         this.setQuestion();
-
-        let firstQuestion = data.results[0];
-        this.questionValue = firstQuestion["question"];
-
-        let answers = firstQuestion["incorrect_answers"];
-        this.correctAnswerIndex = Math.floor(Math.random() * 4); 
-        answers.splice(this.correctAnswerIndex, 0, firstQuestion["correct_answer"]);
-
-        this.answerValues = answers;
       }); 
   };
 
@@ -100,5 +60,40 @@ export class QuestionCard {
     answers.splice(this.correctAnswerIndex, 0, nextQuestion["correct_answer"]);
 
     this.answerValues = answers;
+  };
+
+  selectAnswer(answerNumber: number): void {
+    if (! this.answerSelected){
+      this.answerSelected = true;
+      this.state = "answered";
+      const options = document.getElementsByTagName("app-answer-option");
+
+      for (let i = 0; i < options.length; i++){
+        let answerOption = options[i].firstChild as HTMLElement; 
+        if (i === answerNumber){
+          if (i === this.correctAnswerIndex){
+            answerOption.classList.add("correct");
+            this.score++;
+          } else {
+            answerOption.classList.add("incorrect");
+          }
+        } else {
+          answerOption.classList.add("disabled");
+        }
+      };
+    };
+  };
+
+  changeQuestion(): void {
+    this.state = "ready";
+    this.questionNumber++;
+    this.setQuestion();
+    this.answerSelected = false; 
+
+    const options = document.getElementsByTagName("app-answer-option");
+    Array.from(options).forEach(answerOption => {
+      let answerValue = answerOption.firstChild as HTMLElement; 
+      answerValue.classList = "";
+    });
   };
 };
