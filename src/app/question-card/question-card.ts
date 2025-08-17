@@ -23,7 +23,7 @@ export class QuestionCard {
   answerSelected: boolean = false; 
   score: number = 0;
   questionNumber: number = 1; 
-  questionCount: number = 10; 
+  questionCount: number = 15; 
   state: "ready" | "answered" = "ready";
 
   constructor() {
@@ -56,7 +56,6 @@ export class QuestionCard {
       })
       .then(data => {
         this.questions = data.results;
-
         this.setQuestion();
       }); 
   };
@@ -74,6 +73,9 @@ export class QuestionCard {
     });
     
     this.answerValues = answers;
+
+    const params = new URLSearchParams(new URL(this.apiUrl).search);
+    this.questionCount = Number(params.get("amount"));
   };
 
   decodeHTML(encodedValue: string): string {
