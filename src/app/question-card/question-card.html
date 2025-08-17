@@ -14,7 +14,11 @@
     </div>
 
     @if (state === 'answered') {
-        <input type="button" value="Next" (click)="changeQuestion()" />
+        @if (questionCount !== questionNumber){
+            <input type="button" value="Next" (click)="changeQuestion()" />
+        } @else {
+            <input type="button" value="Finish" (click)="triggerSummary.emit()" />
+        }
     }
 
 </div>

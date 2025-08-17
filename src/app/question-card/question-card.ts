@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
 import { CommonModule } from '@angular/common';
 import { Question } from "./question";
@@ -26,6 +26,8 @@ export class QuestionCard {
   questionCount: number = 15; 
   state: "ready" | "answered" = "ready";
 
+  @Output() triggerSummary = new EventEmitter();
+
   constructor() {
     const interval = setInterval(() => {
       if (this.apiUrl){
@@ -36,7 +38,6 @@ export class QuestionCard {
         this.questionValue = "Loading questions...";
       }
     }, 100);
-    
   };
 
   async getToken() {

@@ -18,4 +18,8 @@ export class App {
     this.screenMode = "questions";
     this.url = url; 
   };
+
+  startSummary(){
+    this.screenMode = "review";
+  };
 };
