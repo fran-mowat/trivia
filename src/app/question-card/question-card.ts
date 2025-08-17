@@ -32,6 +32,8 @@ export class QuestionCard {
         clearInterval(interval);
         this.getToken();
         this.getQuestions();
+      } else {
+        this.questionValue = "Loading questions...";
       }
     }, 100);
     
