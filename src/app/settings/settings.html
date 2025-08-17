@@ -1,11 +1,11 @@
 <div class="settings">
     <div>
-        <label for="question-count">Number of questions: </label>
+        <label for="question-count" class="header">Number of questions: </label>
         <input type="number" min="10" max="50" value="15" step="5" id="question-count">
     </div>
 
     <div>
-        <label for="category">Select category:</label>
+        <label for="category" class="header">Select category:</label>
         <select name="category" id="category">
             <option value="any" selected>Any Category</option>
             <option value="general-knowledge">General Knowledge</option>
@@ -22,17 +22,23 @@
         </select>
     </div>
 
-    <div>
-        <p>Select difficulty:</p>
-        <input type="radio" name="difficulty" id="mixed" value="mixed" checked>
-        <label for="mixed">Any Difficulty</label>
+    <div class="difficulty">
+        <div class="header label">Select difficulty:</div>
         <input type="radio" name="difficulty" id="easy" value="easy">
         <label for="easy">Easy</label>
+        <br>
         <input type="radio" name="difficulty" id="medium" value="medium">
         <label for="medium">Medium</label>
+        <br>
         <input type="radio" name="difficulty" id="hard" value="hard">
         <label for="hard">Hard</label>
+        <br>
+        <input type="radio" name="difficulty" id="mixed" value="mixed" checked>
+        <label for="mixed">Mixed</label>
     </div>
     
+    <div>
+        <input type="button" value="Start">
+    </div>
 
 </div>

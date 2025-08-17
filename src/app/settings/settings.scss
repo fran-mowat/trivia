@@ -1,0 +1,57 @@
+.settings{
+    margin: 20px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 5px;
+    width: 500px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+
+    div{
+        width: 100%;
+    }
+
+    .header{
+        font-size: 18px;
+        display: block;
+        margin: 5px 0;
+    }
+
+    input, select{
+        font-family: inherit;
+        font-size: 16px;
+        width: 250px;
+        box-sizing: content-box;
+        padding: 5px;
+    }
+
+    .difficulty{
+        label{
+            margin: 5px 10px;
+            font-size: 16px;
+        }
+
+        input{
+            accent-color: var(--dark-blue);
+            width: auto;
+        }
+    }
+
+    input[type=button]{
+        background-color: var(--dark-blue);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 15px;
+        margin: 0 20px;
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+    }
+
+    input[type=button]:hover{
+        background-color: var(--dark-blue-hover);
+    }
+}
