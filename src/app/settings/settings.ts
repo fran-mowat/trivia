@@ -28,7 +28,7 @@ export class Settings {
     {id: 25, name: "Art"} 
   ];
 
-  @Output() triggerQuestions = new EventEmitter<string>(); 
+  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number }>(); 
 
   constructApiUrl(){
     let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
@@ -41,6 +41,6 @@ export class Settings {
       url += `&category=${this.categoryCode}`;
     }
 
-    this.triggerQuestions.emit(url);
+    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount});
   };
 };

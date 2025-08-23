@@ -11,6 +11,7 @@ import { Question } from "./question";
 })
 export class QuestionCard {
   @Input() apiUrl!: string; 
+  @Input() questionCount!: number;
 
   optionNumberValues: Array<string> = ["A", "B", "C", "D"];
 
@@ -23,7 +24,6 @@ export class QuestionCard {
   answerSelected: boolean = false; 
   score: number = 0;
   questionNumber: number = 1; 
-  questionCount: number = 15; 
   state: "ready" | "answered" = "ready";
 
   @Output() triggerSummary = new EventEmitter<{ score: number, questionCount: number }>();
@@ -74,9 +74,6 @@ export class QuestionCard {
     });
     
     this.answerValues = answers;
-
-    const params = new URLSearchParams(new URL(this.apiUrl).search);
-    this.questionCount = Number(params.get("amount"));
   };
 
   decodeHTML(encodedValue: string): string {
