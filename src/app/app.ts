@@ -11,7 +11,7 @@ import { SummaryCard } from './summary-card/summary-card';
   styleUrl: './app.scss'
 })
 export class App {
-  screenMode: "settings" | "questions" | "review" = "review";
+  screenMode: "settings" | "questions" | "review" = "settings";
   url: string = "";
   score: number = 0; 
   questionCount: number = 15; 
