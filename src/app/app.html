@@ -1,6 +1,6 @@
 <main class="main">
   @if (screenMode === "settings") {
-    <app-settings [difficulty]="difficulty" [questionCount]="questionCount" (triggerQuestions)="startQuestions($event)"></app-settings>
+    <app-settings [difficulty]="difficulty" [questionCount]="questionCount" [categoryCode]="categoryCode" (triggerQuestions)="startQuestions($event)"></app-settings>
   } @else if (screenMode === "questions") {
     <app-question-card [apiUrl]="url" [questionCount]="questionCount" (triggerSummary)="startSummary($event)"></app-question-card>
   } @else if (screenMode === "review") {

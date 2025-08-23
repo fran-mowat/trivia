@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Settings {
   @Input() questionCount!: number; 
-  categoryCode: number = 0;
+  @Input() categoryCode!: number;
   @Input() difficulty!: string;
 
   categoryOptions = [
@@ -28,7 +28,7 @@ export class Settings {
     {id: 25, name: "Art"} 
   ];
 
-  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number, difficulty: string }>(); 
+  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number, difficulty: string, categoryCode: number }>(); 
 
   ngOnInit() {
     if (!this.difficulty){
@@ -37,6 +37,10 @@ export class Settings {
 
     if (!this.questionCount){
       this.questionCount = 15;
+    }
+
+    if (!this.categoryCode){
+      this.categoryCode = 0; 
     }
   }
 
@@ -51,6 +55,6 @@ export class Settings {
       url += `&category=${this.categoryCode}`;
     }
 
-    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty});
+    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty, categoryCode: this.categoryCode});
   };
 };
