@@ -22,10 +22,9 @@ export class App {
     this.questionCount = data.questionCount; 
   };
 
-  startSummary(data: {score: number, questionCount: number}){
+  startSummary(data: {score: number}){
     this.screenMode = "review";
 
-    this.score = data.score; 
-    this.questionCount = data.questionCount;
+    this.score = data.score;
   }
 };
