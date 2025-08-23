@@ -13,4 +13,9 @@ export class SummaryCard {
   @Input() difficulty!: string;
 
   @Output() playAgain = new EventEmitter();
+
+  ngOnInit() {
+    let percentage = (this.score / this.questionCount) * 100
+    document.documentElement.style.setProperty("--quiz-percentage", `${percentage}%`);
+  }
 }
