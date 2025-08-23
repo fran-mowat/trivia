@@ -17,13 +17,15 @@ export class App {
   questionCount: number = 15; 
   difficulty: string = "";
   categoryCode: number = 0;
+  category: string = "";
 
-  startQuestions(data: {url: string, questionCount: number, difficulty: string, categoryCode: number}){
+  startQuestions(data: {url: string, questionCount: number, difficulty: string, categoryCode: number, category: string}){
     this.screenMode = "questions";
     this.url = data.url;
     this.questionCount = data.questionCount; 
     this.difficulty = data.difficulty;
     this.categoryCode = data.categoryCode;
+    this.category = data.category;
   };
 
   startSummary(data: {score: number}){

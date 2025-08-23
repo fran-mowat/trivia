@@ -12,6 +12,7 @@ export class Settings {
   @Input() questionCount!: number; 
   @Input() categoryCode!: number;
   @Input() difficulty!: string;
+  category: string = ""; 
 
   categoryOptions = [
     {id: 0, name: "Any Category"}, 
@@ -28,7 +29,7 @@ export class Settings {
     {id: 25, name: "Art"} 
   ];
 
-  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number, difficulty: string, categoryCode: number }>(); 
+  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number, difficulty: string, categoryCode: number, category: string }>(); 
 
   ngOnInit() {
     if (!this.difficulty){
@@ -42,7 +43,7 @@ export class Settings {
     if (!this.categoryCode){
       this.categoryCode = 0; 
     }
-  }
+  };
 
   constructApiUrl(){
     let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
@@ -55,6 +56,9 @@ export class Settings {
       url += `&category=${this.categoryCode}`;
     }
 
-    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty, categoryCode: this.categoryCode});
+    let categoryOption = this.categoryOptions.find((option) => option.id === Number(this.categoryCode));
+    this.category = categoryOption!["name"];
+
+    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty, categoryCode: this.categoryCode, category: this.category});
   };
 };
