@@ -15,11 +15,13 @@ export class App {
   url: string = "";
   score: number = 0; 
   questionCount: number = 15; 
+  difficulty: string = "";
 
-  startQuestions(data: {url: string, questionCount: number}){
+  startQuestions(data: {url: string, questionCount: number, difficulty: string}){
     this.screenMode = "questions";
     this.url = data.url;
     this.questionCount = data.questionCount; 
+    this.difficulty = data.difficulty;
   };
 
   startSummary(data: {score: number}){

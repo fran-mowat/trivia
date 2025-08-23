@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './settings.scss'
 })
 export class Settings {
-  questionCount: number = 15; 
+  @Input() questionCount!: number; 
   categoryCode: number = 0;
-  difficulty: string = "mixed";
+  @Input() difficulty!: string;
 
   categoryOptions = [
     {id: 0, name: "Any Category"}, 
@@ -28,7 +28,17 @@ export class Settings {
     {id: 25, name: "Art"} 
   ];
 
-  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number }>(); 
+  @Output() triggerQuestions = new EventEmitter<{ url: string, questionCount: number, difficulty: string }>(); 
+
+  ngOnInit() {
+    if (!this.difficulty){
+      this.difficulty = "mixed";
+    }
+
+    if (!this.questionCount){
+      this.questionCount = 15;
+    }
+  }
 
   constructApiUrl(){
     let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
@@ -41,6 +51,6 @@ export class Settings {
       url += `&category=${this.categoryCode}`;
     }
 
-    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount});
+    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty});
   };
 };
