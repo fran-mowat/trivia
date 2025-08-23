@@ -26,7 +26,7 @@ export class QuestionCard {
   questionCount: number = 15; 
   state: "ready" | "answered" = "ready";
 
-  @Output() triggerSummary = new EventEmitter();
+  @Output() triggerSummary = new EventEmitter<{ score: number, questionCount: number }>();
 
   constructor() {
     const interval = setInterval(() => {

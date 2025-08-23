@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-summary-card',
@@ -7,5 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './summary-card.scss'
 })
 export class SummaryCard {
+  @Input() score!: number; 
+  @Input() questionCount!: number; 
+
   @Output() playAgain = new EventEmitter();
 }

@@ -17,7 +17,7 @@
         @if (questionCount !== questionNumber){
             <input type="button" value="Next" (click)="changeQuestion()" />
         } @else {
-            <input type="button" value="Finish" (click)="triggerSummary.emit()" />
+            <input type="button" value="Finish" (click)="triggerSummary.emit({ score: this.score, questionCount: this.questionCount})" />
         }
     }
 

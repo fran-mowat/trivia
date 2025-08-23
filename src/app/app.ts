@@ -13,9 +13,18 @@ import { SummaryCard } from './summary-card/summary-card';
 export class App {
   screenMode: "settings" | "questions" | "review" = "review";
   url: string = "";
+  score: number = 0; 
+  questionCount: number = 15; 
 
   startQuestions(url: string){
     this.screenMode = "questions";
     this.url = url; 
   };
+
+  startSummary(data: {score: number, questionCount: number}){
+    this.screenMode = "review";
+
+    this.score = data.score; 
+    this.questionCount = data.questionCount;
+  }
 };

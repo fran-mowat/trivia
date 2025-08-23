@@ -2,9 +2,9 @@
   @if (screenMode === "settings") {
     <app-settings (triggerQuestions)="startQuestions($event)"></app-settings>
   } @else if (screenMode === "questions") {
-    <app-question-card [apiUrl]="url" (triggerSummary)="screenMode='review'"></app-question-card>
+    <app-question-card [apiUrl]="url" (triggerSummary)="startSummary($event)"></app-question-card>
   } @else if (screenMode === "review") {
-    <app-summary-card (playAgain)="screenMode='settings'"></app-summary-card>
+    <app-summary-card [score]="score" [questionCount]="questionCount" (playAgain)="screenMode='settings'"></app-summary-card>
   }
   
 </main>
