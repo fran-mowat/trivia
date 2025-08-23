@@ -5,4 +5,7 @@
     </div>
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="playAgain.emit()">
+
+    <div>Category: {{ this.category }}</div>
+    <div>Difficulty: {{ this.difficulty.charAt(0).toUpperCase() + this.difficulty.slice(1) }}</div>
 </div>

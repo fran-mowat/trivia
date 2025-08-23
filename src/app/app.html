@@ -2,9 +2,9 @@
   @if (screenMode === "settings") {
     <app-settings [difficulty]="difficulty" [questionCount]="questionCount" [categoryCode]="categoryCode" (triggerQuestions)="startQuestions($event)"></app-settings>
   } @else if (screenMode === "questions") {
-    <app-question-card [apiUrl]="url" [questionCount]="questionCount" [category]="category" [difficulty]="difficulty" (triggerSummary)="startSummary($event)"></app-question-card>
+    <app-question-card [apiUrl]="url" [questionCount]="questionCount" (triggerSummary)="startSummary($event)"></app-question-card>
   } @else if (screenMode === "review") {
-    <app-summary-card [score]="score" [questionCount]="questionCount" (playAgain)="screenMode='settings'"></app-summary-card>
+    <app-summary-card [score]="score" [questionCount]="questionCount" [category]="category" [difficulty]="difficulty" (playAgain)="screenMode='settings'"></app-summary-card>
   }
   
 </main>

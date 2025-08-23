@@ -9,6 +9,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SummaryCard {
   @Input() score!: number; 
   @Input() questionCount!: number; 
+  @Input() category!: string; 
+  @Input() difficulty!: string;
 
   @Output() playAgain = new EventEmitter();
 }

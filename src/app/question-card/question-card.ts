@@ -12,8 +12,6 @@ import { Question } from "./question";
 export class QuestionCard {
   @Input() apiUrl!: string; 
   @Input() questionCount!: number;
-  @Input() category!: string; 
-  @Input() difficulty!: string; 
 
   optionNumberValues: Array<string> = ["A", "B", "C", "D"];
 
