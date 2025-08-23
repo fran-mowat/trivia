@@ -30,16 +30,13 @@ export class QuestionCard {
 
   @Output() triggerSummary = new EventEmitter<{ score: number }>();
 
-  constructor() {
-    const interval = setInterval(() => {
-      if (this.apiUrl){
-        clearInterval(interval);
-        this.getToken();
-        this.getQuestions();
-      } else {
-        this.questionValue = "Loading questions...";
-      }
-    }, 100);
+  ngOnInit() {
+    if (this.apiUrl){
+      this.getToken();
+      this.getQuestions();
+    } else {
+      this.questionValue = "Loading questions...";
+    }
   };
 
   async getToken() {
