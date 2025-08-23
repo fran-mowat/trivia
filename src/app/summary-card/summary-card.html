@@ -1,6 +1,8 @@
 <div class="summary-card">
-    <div>Score:</div>
-    <div>13/30</div>
-    <div>40%</div>
+    <div class="progress" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+        <div class="percentage">34%</div>
+        <div class="score">8/20</div>
+    </div>
+    <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="playAgain.emit()">
 </div>

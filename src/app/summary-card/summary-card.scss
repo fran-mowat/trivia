@@ -5,8 +5,37 @@
     width: 500px;
     padding: 30px;
 
+    .progress{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 50%;
+        height: 300px;
+        width: 300px;
+        margin: 40px auto;
+        background: 
+            radial-gradient(white 0% 60%, transparent 61% 100%),
+            conic-gradient(var(--dark-blue) 0% 30%, var(--light-blue) 30% 100%);
+
+        .percentage{
+            font-size: 70px;
+        }
+
+        .score{
+            font-size: 20px;
+        }
+    }
+
+    .subtext{
+        color: var(--dark-grey);
+        margin: 15px auto;
+        width: max-content;
+        font-size: 18px;
+    }
+
     input{
-        font-size: 16px;
+        font-size: 20px;
         font-family: inherit;
         background-color: var(--dark-blue);
         color: white;
