@@ -1,8 +1,7 @@
 .summary-card{
-    margin: 20px;
     border: 1px solid var(--dark-grey);
     border-radius: 5px;
-    width: 500px;
+    width: 50vw;
     padding: 30px;
 
     .context{
@@ -22,16 +21,17 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        gap: 5px;
         border-radius: 50%;
-        height: 300px;
-        width: 300px;
+        height: 250px;
+        width: 250px;
         margin: 40px auto;
         background: 
             radial-gradient(white 0% 60%, transparent 60.3% 100%),
             conic-gradient(var(--dark-blue) 0% var(--quiz-percentage), var(--light-blue) var(--quiz-percentage-point) 100%);
 
         .percentage{
-            font-size: 70px;
+            font-size: 60px;
         }
 
         .score{
