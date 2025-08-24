@@ -1,4 +1,6 @@
-main{
-    width: fit-content;
-    margin: 50px auto;
+@media (min-width: 600px) {
+    main{
+        width: fit-content;
+        margin: 50px auto;
+    }
 }

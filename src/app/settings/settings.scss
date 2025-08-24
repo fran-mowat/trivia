@@ -1,8 +1,6 @@
 .settings{
-    border: 1px solid var(--dark-grey);
     border-radius: 5px;
-    width: 50vw;
-    padding: 30px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -52,5 +50,13 @@
 
     input[type=button]:hover{
         background-color: var(--dark-blue-hover);
+    }
+}
+
+@media (min-width: 600px) {
+    .settings{
+        width: max(50vw, 400px);
+        border: 1px solid var(--dark-grey);
+        padding: 30px;
     }
 }

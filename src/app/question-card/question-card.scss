@@ -1,8 +1,6 @@
 .question-card{
-    border: 1px solid var(--dark-grey);
     border-radius: 5px;
-    width: 50vw;
-    padding: 30px;
+    padding: 10px;
 
     .progress-banner{
         display: flex;
@@ -46,5 +44,13 @@
 
     input.hidden{
         display: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .question-card{
+        width: max(50vw, 400px);
+        border: 1px solid var(--dark-grey);
+        padding: 30px;
     }
 }
