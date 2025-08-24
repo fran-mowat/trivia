@@ -17,5 +17,6 @@ export class SummaryCard {
   ngOnInit() {
     let percentage = (this.score / this.questionCount) * 100
     document.documentElement.style.setProperty("--quiz-percentage", `${percentage}%`);
+    document.documentElement.style.setProperty("--quiz-percentage-point", `${percentage + 0.1}%`);
   }
 }
