@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
 import { CommonModule } from '@angular/common';
-import { Question } from "./question";
+import { Question } from "../interfaces/question";
 
 @Component({
   selector: 'app-question-card',
