@@ -5,7 +5,7 @@
     </div>
 
     <div class="progress" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-        <div class="percentage">{{ (this.score / this.questionCount) * 100 }}%</div>
+        <div class="percentage">{{ ((this.score / this.questionCount) * 100).toFixed(0) }}%</div>
         <div class="score">{{ this.score }}/{{ this.questionCount }}</div>
     </div>
 
