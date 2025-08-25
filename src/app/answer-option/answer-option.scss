@@ -30,10 +30,7 @@ div:not(.correct, .notSelected, .incorrect, .disabled):hover{
 .incorrect{
     border-color: var(--red);
     background-color: var(--light-red);
-}
-
-.pulse{
-    
+    animation: shake 0.25s 2;
 }
 
 @keyframes pulse {
@@ -47,5 +44,27 @@ div:not(.correct, .notSelected, .incorrect, .disabled):hover{
 
     100%{
         transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0%{
+        transform: translateX(0);
+    }
+
+    25%{
+        transform: translateX(2px);
+    }
+
+    50%{
+        transform: translateX(0);
+    }
+
+    75%{
+        transform: translateX(-2px);
+    }
+
+    100%{
+        transform: translateX(0);
     }
 }
