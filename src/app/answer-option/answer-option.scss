@@ -24,9 +24,28 @@ div:not(.correct, .notSelected, .incorrect, .disabled):hover{
 .correct, .notSelected{
     border-color: var(--green);
     background-color: var(--light-green);
+    animation: pulse 0.5s;
 }
 
 .incorrect{
     border-color: var(--red);
     background-color: var(--light-red);
+}
+
+.pulse{
+    
+}
+
+@keyframes pulse {
+    0%{
+        transform: scale(1);
+    } 
+
+    50%{
+        transform: scale(1.08);
+    }
+
+    100%{
+        transform: scale(1);
+    }
 }
