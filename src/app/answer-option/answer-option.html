@@ -1,4 +1,4 @@
-<div>{{ this.optionNumber }}&rpar; {{ this.answer }}
+<div [ngClass]="{'correct': this.state === 'correct', 'incorrect': this.state === 'incorrect', 'disabled': this.state === 'disabled', 'notSelected': this.state === 'notSelected'}">{{ this.optionNumber }}&rpar; {{ this.answer }}
     @if (this.state === "incorrect"){
         <object data="cross-icon.xml" type="image/svg+xml"></object>
     } @else if (this.state === "correct") {

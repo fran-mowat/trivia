@@ -16,12 +16,12 @@ div{
     }
 }
 
-div:not(.correct, .incorrect, .disabled):hover{
+div:not(.correct, .notSelected, .incorrect, .disabled):hover{
     background-color: var(--light-blue);
     border-color: var(--dark-blue);
 }
 
-.correct{
+.correct, .notSelected{
     border-color: var(--green);
     background-color: var(--light-green);
 }

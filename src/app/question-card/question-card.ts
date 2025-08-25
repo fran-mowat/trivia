@@ -15,7 +15,7 @@ export class QuestionCard {
 
   questionValue: string = "";
   answerValues: Array<string> = [];
-  answerStates: Array<"correct" | "incorrect" | ""> = ["", "", "", ""];
+  answerStates: Array<"correct" | "incorrect" | "disabled" | "notSelected" | ""> = ["", "", "", ""];
   correctAnswerIndex: number = 0;
   questions: Array<Question> = [];
   token: string = "";
@@ -82,21 +82,17 @@ export class QuestionCard {
     if (! this.answerSelected){
       this.answerSelected = true;
       this.state = "answered";
-      const options = document.getElementsByTagName("app-answer-option");
 
-      for (let i = 0; i < options.length; i++){
-        let answerOption = options[i].firstChild as HTMLElement; 
-        if (i === answerNumber){
-          if (i === this.correctAnswerIndex){
-            answerOption.classList.add("correct");
-            this.answerStates[i] = "correct";
-            this.score++;
-          } else {
-            answerOption.classList.add("incorrect");
-            this.answerStates[i] = "incorrect";
-          }
+      for (let i = 0; i < 4; i++){
+        if (i === answerNumber && i === this.correctAnswerIndex){
+          this.answerStates[i] = "correct";
+          this.score++;
+        } else if (i === answerNumber && i !== this.correctAnswerIndex){
+          this.answerStates[i] = "incorrect";
+        } else if (i === this.correctAnswerIndex){
+          this.answerStates[i] = "notSelected";
         } else {
-          answerOption.classList.add("disabled");
+          this.answerStates[i] = "disabled";
         }
       };
     };
