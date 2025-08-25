@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 export class AnswerOption {
   @Input() optionNumber!: string; 
   @Input() answer: string = "";
+  @Input() state: "incorrect" | "correct" | "" = "";
 }

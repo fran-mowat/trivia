@@ -13,10 +13,9 @@ export class QuestionCard {
   @Input() apiUrl!: string; 
   @Input() questionCount!: number;
 
-  optionNumberValues: Array<string> = ["A", "B", "C", "D"];
-
   questionValue: string = "";
   answerValues: Array<string> = [];
+  answerStates: Array<"correct" | "incorrect" | ""> = ["", "", "", ""];
   correctAnswerIndex: number = 0;
   questions: Array<Question> = [];
   token: string = "";
@@ -90,9 +89,11 @@ export class QuestionCard {
         if (i === answerNumber){
           if (i === this.correctAnswerIndex){
             answerOption.classList.add("correct");
+            this.answerStates[i] = "correct";
             this.score++;
           } else {
             answerOption.classList.add("incorrect");
+            this.answerStates[i] = "incorrect";
           }
         } else {
           answerOption.classList.add("disabled");
@@ -106,6 +107,7 @@ export class QuestionCard {
     this.questionNumber++;
     this.setQuestion();
     this.answerSelected = false; 
+    this.answerStates = ["", "", "", ""];
 
     const options = document.getElementsByTagName("app-answer-option");
     Array.from(options).forEach(answerOption => {

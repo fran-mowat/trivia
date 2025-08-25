@@ -1,1 +1,8 @@
-<div>{{ this.optionNumber }}&rpar; {{ this.answer }}</div>
+<div>{{ this.optionNumber }}&rpar; {{ this.answer }}
+    @if (this.state === "incorrect"){
+        <object data="cross-icon.xml" type="image/svg+xml"></object>
+    } @else if (this.state === "correct") {
+        <object data="tick-icon.xml" type="image/svg+xml"></object>
+    }
+</div>
+
