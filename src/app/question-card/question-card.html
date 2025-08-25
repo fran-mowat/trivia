@@ -4,7 +4,7 @@
         <div>Score: {{ this.score }}</div>
     </div>
 
-    <div class="question">{{ this.questionValue }}</div>
+    <div class="question">{{ this.questionValue ? this.questionValue : "Loading..." }}</div>
 
     <div class="answers">
         @for (item of ["A", "B", "C", "D"]; track $index){
