@@ -7,10 +7,9 @@
     <div class="question">{{ this.questionValue }}</div>
 
     <div class="answers">
-        <app-answer-option [optionNumber]="'A'" [answer]="answerValues[0]" [state]="answerStates[0]" (click)="selectAnswer(0)"></app-answer-option>
-        <app-answer-option [optionNumber]="'B'" [answer]="answerValues[1]" [state]="answerStates[1]" (click)="selectAnswer(1)"></app-answer-option>
-        <app-answer-option [optionNumber]="'C'" [answer]="answerValues[2]" [state]="answerStates[2]" (click)="selectAnswer(2)"></app-answer-option>
-        <app-answer-option [optionNumber]="'D'" [answer]="answerValues[3]" [state]="answerStates[3]" (click)="selectAnswer(3)"></app-answer-option>
+        @for (item of ["A", "B", "C", "D"]; track $index){
+            <app-answer-option [optionNumber]="item" [answer]="answerValues[$index]" [state]="answerStates[$index]" (click)="selectAnswer($index)"></app-answer-option>
+        }
     </div>
 
     @if (state === 'answered') {
