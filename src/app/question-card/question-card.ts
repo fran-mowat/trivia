@@ -15,7 +15,7 @@ export class QuestionCard {
 
   questionValue: string = "";
   answerValues: Array<string> = [];
-  answerStates: Array<"correct" | "incorrect" | "disabled" | "notSelected" | ""> = ["", "", "", ""];
+  answerStates: Array<"correct" | "incorrect" | "disabled" | "notSelected" | ""> = ["disabled", "disabled", "disabled", "disabled"];
   correctAnswerIndex: number = 0;
   questions: Array<Question> = [];
   token: string = "";
@@ -54,6 +54,7 @@ export class QuestionCard {
       .then(data => {
         this.questions = data.results;
         this.setQuestion();
+        this.answerStates = ["", "", "", ""];
       }); 
   };
 
