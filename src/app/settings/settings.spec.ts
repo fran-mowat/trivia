@@ -21,14 +21,14 @@ describe('Settings', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialise the default instance variables', () => {
+  it('should initialise default instance variables', () => {
     expect(component.difficulty).toBe('mixed');
     expect(component.questionCount).toBe(15);
     expect(component.categoryCode).toBe(0);
   });
 
   it('should display a validation message', () => {
-    let input = document.getElementById("question-count") as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector("#question-count") as HTMLInputElement;
 
     input.value = '9';
     component.validateQuestionCount();
@@ -44,8 +44,8 @@ describe('Settings', () => {
   });
 
   it('should disable the start button', () => {
-    let input = document.getElementById("question-count") as HTMLInputElement;
-    let startButton = document.getElementById("start");
+    const input = fixture.nativeElement.querySelector("#question-count") as HTMLInputElement;
+    const startButton = fixture.nativeElement.querySelector("#start");
 
     input.value = '9';
     component.validateQuestionCount();
@@ -64,7 +64,7 @@ describe('Settings', () => {
     expect(startButton?.classList.contains('disabled')).toBeFalse();  
   });
 
-  it('should trigger question card', () => {
+  it('should trigger the question card', () => {
     const spy = spyOn(component.triggerQuestions, 'emit');
   
     component.constructApiUrl();
@@ -77,7 +77,7 @@ describe('Settings', () => {
     expect(spy).toHaveBeenCalledWith({url: 'https://opentdb.com/api.php?type=multiple&amount=28&difficulty=easy&category=21', questionCount: 28, difficulty: 'easy', categoryCode: 21, category: 'Sports'});
   });
 
-  it('should validate question count', () => {
+  it('should validate the question count', () => {
     const spy = spyOn(component.triggerQuestions, 'emit'); 
 
     component.questionCount = 9; 
