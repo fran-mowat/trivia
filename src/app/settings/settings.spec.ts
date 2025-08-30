@@ -20,4 +20,80 @@ describe('Settings', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialise the default instance variables', () => {
+    expect(component.difficulty).toBe('mixed');
+    expect(component.questionCount).toBe(15);
+    expect(component.categoryCode).toBe(0);
+  });
+
+  it('should display a validation message', () => {
+    let input = document.getElementById("question-count") as HTMLInputElement;
+
+    input.value = '9';
+    component.validateQuestionCount();
+    expect(component.validationMessage).toBe('Value must be greater than or equal to 10.');
+
+    input.value = '51';
+    component.validateQuestionCount();
+    expect(component.validationMessage).toBe('Value must be less than or equal to 50.');
+
+    input.value = '50';
+    component.validateQuestionCount();
+    expect(component.validationMessage).toBeFalsy();    
+  });
+
+  it('should disable the start button', () => {
+    let input = document.getElementById("question-count") as HTMLInputElement;
+    let startButton = document.getElementById("start");
+
+    input.value = '9';
+    component.validateQuestionCount();
+    expect(startButton?.classList.contains('disabled')).toBeTrue();
+
+    input.value = '10';
+    component.validateQuestionCount();
+    expect(startButton?.classList.contains('disabled')).toBeFalse();
+
+    input.value = '51';
+    component.validateQuestionCount();
+    expect(startButton?.classList.contains('disabled')).toBeTrue();
+
+    input.value = '50';
+    component.validateQuestionCount();
+    expect(startButton?.classList.contains('disabled')).toBeFalse();  
+  });
+
+  it('should trigger question card', () => {
+    const spy = spyOn(component.triggerQuestions, 'emit');
+  
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledWith({url: 'https://opentdb.com/api.php?type=multiple&amount=15', questionCount: 15, difficulty: 'mixed', categoryCode: 0, category: 'Any Category'});
+
+    component.categoryCode = 21; 
+    component.difficulty = 'easy';
+    component.questionCount = 28;
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledWith({url: 'https://opentdb.com/api.php?type=multiple&amount=28&difficulty=easy&category=21', questionCount: 28, difficulty: 'easy', categoryCode: 21, category: 'Sports'});
+  });
+
+  it('should validate question count', () => {
+    const spy = spyOn(component.triggerQuestions, 'emit'); 
+
+    component.questionCount = 9; 
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledTimes(0);
+
+    component.questionCount = 10; 
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    component.questionCount = 51; 
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledTimes(1);
+
+    component.questionCount = 50; 
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledTimes(2);
+  });
 });
