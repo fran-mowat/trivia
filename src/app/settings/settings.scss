@@ -1,6 +1,6 @@
 .settings{
     border-radius: 5px;
-    padding: 10px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,6 +60,5 @@
     .settings{
         width: max(50vw, 400px);
         border: 1px solid var(--dark-grey);
-        padding: 30px;
     }
 }
