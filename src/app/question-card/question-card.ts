@@ -13,16 +13,16 @@ export class QuestionCard {
   @Input() apiUrl!: string; 
   @Input() questionCount!: number;
 
-  questionValue: string = "";
+  questionValue = "";
   answerValues: Array<string> = [];
   answerStates: Array<"correct" | "incorrect" | "disabled" | "notSelected" | ""> = ["disabled", "disabled", "disabled", "disabled"];
-  correctAnswerIndex: number = 0;
+  correctAnswerIndex = -1;
   questions: Array<Question> = [];
-  token: string = "";
+  token = "";
 
-  answerSelected: boolean = false; 
-  score: number = 0;
-  questionNumber: number = 1; 
+  answerSelected = false; 
+  score = 0;
+  questionNumber = 1; 
   state: "ready" | "answered" = "ready";
 
   @Output() triggerSummary = new EventEmitter<{ score: number }>();
