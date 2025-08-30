@@ -49,6 +49,9 @@ export class Settings {
   validateQuestionCount(){
     let input = document.getElementById("question-count") as HTMLInputElement;
     this.validationMessage = input.validationMessage; 
+
+    let startButton = document.getElementById("start");
+    this.validationMessage ? startButton?.classList.add("disabled") : startButton?.classList.remove("disabled");
   };
 
   constructApiUrl(){

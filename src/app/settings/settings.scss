@@ -71,6 +71,13 @@
         background-color: var(--dark-blue-hover);
         transform: scale(1.03);
     }
+
+    input[type=button].disabled{
+        transition: none;
+        transform: none;
+        cursor: not-allowed;
+        background-color: var(--dark-blue-hover);
+    }
 }
 
 @media (min-width: 600px) {
