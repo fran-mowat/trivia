@@ -1,7 +1,8 @@
 <div class="settings">
     <div>
         <label for="question-count" class="header">Number of questions: </label>
-        <input type="number" min="10" max="50" value="15" step="5" id="question-count" [(ngModel)]="questionCount">
+        <input type="number" min="10" max="50" value="15" step="5" id="question-count" [(ngModel)]="questionCount" (input)="validateQuestionCount()">
+        <div class="error-message">* {{ this.validationMessage }}</div>
     </div>
 
     <div>

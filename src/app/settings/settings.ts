@@ -13,6 +13,7 @@ export class Settings {
   @Input() categoryCode!: number;
   @Input() difficulty!: string;
   category: string = ""; 
+  validationMessage = "";
 
   categoryOptions = [
     {id: 0, name: "Any Category"}, 
@@ -45,20 +46,27 @@ export class Settings {
     }
   };
 
+  validateQuestionCount(){
+    let input = document.getElementById("question-count") as HTMLInputElement;
+    this.validationMessage = input.validationMessage; 
+  };
+
   constructApiUrl(){
-    let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
+    if (this.questionCount >= 10 && this.questionCount <= 50){
+      let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
 
-    if (this.difficulty !== "mixed"){
-      url += `&difficulty=${this.difficulty}`;
+      if (this.difficulty !== "mixed"){
+        url += `&difficulty=${this.difficulty}`;
+      }
+
+      if (this.categoryCode !== 0){
+        url += `&category=${this.categoryCode}`;
+      }
+
+      let categoryOption = this.categoryOptions.find((option) => option.id === Number(this.categoryCode));
+      this.category = categoryOption!["name"];
+
+      this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty, categoryCode: this.categoryCode, category: this.category});
     }
-
-    if (this.categoryCode !== 0){
-      url += `&category=${this.categoryCode}`;
-    }
-
-    let categoryOption = this.categoryOptions.find((option) => option.id === Number(this.categoryCode));
-    this.category = categoryOption!["name"];
-
-    this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty, categoryCode: this.categoryCode, category: this.category});
   };
 };

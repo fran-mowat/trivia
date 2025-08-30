@@ -23,6 +23,23 @@
         width: 250px;
         box-sizing: content-box;
         padding: 5px;
+        border-radius: 3px;
+        border: 1px solid var(--dark-grey);
+    }
+
+    .ng-invalid{
+        border-color: var(--red);
+    }
+
+    .ng-invalid ~ .error-message{
+        display: block;
+    }
+
+    .error-message{
+        display: none;
+        color: var(--red);
+        font-size: 14px;
+        margin: 5px 0 0 5px;
     }
 
     .difficulty{
