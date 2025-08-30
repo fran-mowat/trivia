@@ -20,4 +20,11 @@ describe('QuestionCard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should retrieve an API token', async () => {
+    component.apiUrl = 'https://opentdb.com/api.php?type=multiple&amount=10';
+
+    await component.getToken();
+    expect(component.token).toBeTruthy();
+  });
 });
