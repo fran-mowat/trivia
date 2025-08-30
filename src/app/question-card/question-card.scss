@@ -35,11 +35,13 @@
         width: calc(100% - 40px);
         box-sizing: border-box;
         font-family: inherit;
-        font-size: 16px;
+        font-size: 18px;
+        transition: background-color 0.2s, transform 0.2s;
     }
 
     input:hover{
         background-color: var(--dark-blue-hover);
+        transform: scale(1.03);
     }
 
     input.hidden{

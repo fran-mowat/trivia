@@ -45,9 +45,10 @@
     }
 
     input{
-        font-size: 20px;
+        font-size: 18px;
         font-family: inherit;
         background-color: var(--dark-blue);
+        transition: background-color 0.2s, transform 0.2s;
         color: white;
         border: none;
         border-radius: 5px;
@@ -59,6 +60,7 @@
 
     input:hover{
         background-color: var(--dark-blue-hover);
+        transform: scale(1.03);
     }
 }
 
