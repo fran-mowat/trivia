@@ -1,50 +1,51 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { App } from './app';
 
 describe('App', () => {
+  let component: App;
+  let fixture: ComponentFixture<App>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(App);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   it('should render the settings card', () => {
-    const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    
-    expect(compiled.querySelector('app-settings')).toBeTruthy();
-    expect(compiled.querySelector('app-question-card')).toBeFalsy();
-    expect(compiled.querySelector('app-summary-card')).toBeFalsy();
+    expect(component.screenMode).toBe('settings');
+
+    expect(fixture.nativeElement.querySelector('app-settings')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-question-card')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('app-summary-card')).toBeFalsy();
   });
 
-  it('should render the question card', () => {
-    const fixture = TestBed.createComponent(App);
-    const compiled = fixture.nativeElement as HTMLElement;
-    
-    fixture.componentInstance.screenMode = "questions";
+  it('should render the question card', () => {    
+    component.startQuestions({url: "", questionCount: 0, difficulty: "", categoryCode: 0, category: ""});
     fixture.detectChanges();
 
-    expect(compiled.querySelector('app-settings')).toBeFalsy();
-    expect(compiled.querySelector('app-question-card')).toBeTruthy();
-    expect(compiled.querySelector('app-summary-card')).toBeFalsy();
+    expect(component.screenMode).toBe("questions");
+
+    expect(fixture.nativeElement.querySelector('app-settings')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('app-question-card')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-summary-card')).toBeFalsy();
   });
 
   it('should render the summary card', () => {
-    const fixture = TestBed.createComponent(App);
-    const compiled = fixture.nativeElement as HTMLElement;
-    
-    fixture.componentInstance.screenMode = "review";
+    component.startSummary({score: 0});
     fixture.detectChanges();
 
-    expect(compiled.querySelector('app-settings')).toBeFalsy();
-    expect(compiled.querySelector('app-question-card')).toBeFalsy();
-    expect(compiled.querySelector('app-summary-card')).toBeTruthy();
+    expect(component.screenMode).toBe("review");
+
+    expect(fixture.nativeElement.querySelector('app-settings')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('app-question-card')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('app-summary-card')).toBeTruthy();
   });
 });

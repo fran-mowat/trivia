@@ -12,12 +12,12 @@ import { SummaryCard } from './summary-card/summary-card';
 })
 export class App {
   screenMode: "settings" | "questions" | "review" = "settings";
-  url: string = "";
-  score: number = 0; 
-  questionCount: number = 15; 
-  difficulty: string = "";
-  categoryCode: number = 0;
-  category: string = "";
+  url = "";
+  score = 0; 
+  questionCount = 15; 
+  difficulty = "";
+  categoryCode = 0;
+  category = "";
 
   startQuestions(data: {url: string, questionCount: number, difficulty: string, categoryCode: number, category: string}){
     this.screenMode = "questions";
