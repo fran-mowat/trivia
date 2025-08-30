@@ -12,7 +12,7 @@ export class Settings {
   @Input() questionCount!: number; 
   @Input() categoryCode!: number;
   @Input() difficulty!: string;
-  category: string = ""; 
+  category = ""; 
   validationMessage = "";
 
   categoryOptions = [
