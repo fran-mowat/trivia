@@ -11,15 +11,12 @@ export class SummaryCard {
   @Input() questionCount!: number; 
   @Input() category!: string; 
   @Input() difficulty!: string;
-  percentage: number; 
+  percentage!: number; 
 
   @Output() playAgain = new EventEmitter();
 
-  constructor(){
-    this.percentage = (this.score / this.questionCount) * 100;
-  }
-
   ngOnInit() {
+    this.percentage = (this.score / this.questionCount) * 100;
     let percentageDisplay = document.getElementsByClassName("percentage")[0];
     percentageDisplay.innerHTML = "0%"; 
 
@@ -47,6 +44,6 @@ export class SummaryCard {
         
         scoreDisplay.innerHTML = `${this.score}/${this.questionCount}`;
       }
-    }, 0.4);
+    }, 1);
   };
 };
