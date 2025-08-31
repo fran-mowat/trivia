@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
 import { CommonModule } from '@angular/common';
 import { Question } from "../interfaces/question";
+import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'app-question-card',
@@ -27,35 +28,17 @@ export class QuestionCard {
 
   @Output() triggerSummary = new EventEmitter<{ score: number }>();
 
+  constructor(private questionService: QuestionService){ };
+
   ngOnInit() {
-    if (this.apiUrl){
-      this.getToken();
-      this.getQuestions();
-    } else {
-      this.questionValue = "Loading questions...";
-    }
-  };
-
-  async getToken() {
-    await fetch("https://opentdb.com/api_token.php?command=request")
-    .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      this.token = data["token"];
-    })
-  };
-
-  async getQuestions() {
-    fetch(`${this.apiUrl}&token=${this.token}`)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        this.questions = data.results;
+    this.questionService.getToken().subscribe(response => {
+      this.token = response.token;
+      this.questionService.getQuestions(this.apiUrl, this.token).subscribe(response => {
+        this.questions = response.results;
         this.setQuestion();
         this.answerStates = ["", "", "", ""];
-      }); 
+      })
+    });
   };
 
   setQuestion() {
