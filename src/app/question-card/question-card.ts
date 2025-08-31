@@ -58,8 +58,8 @@ export class QuestionCard {
 
   decodeHTML(encodedValue: string): string {
     const parser = new DOMParser(); 
-    const decodedString = parser.parseFromString(encodedValue, "text/html").documentElement.textContent || ""; 
-    return decodedString;
+    const decodedString = parser.parseFromString(encodedValue, "text/html").documentElement.textContent; 
+    return decodedString!;
   };
 
   selectAnswer(answerNumber: number): void {

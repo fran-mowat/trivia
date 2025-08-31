@@ -12,7 +12,7 @@ export class QuestionService {
     return this.httpClient.get<{response_code: number, response_message: string, token: string}>('https://opentdb.com/api_token.php?command=request');
   }
 
-  getQuestions(apiUrl:string, token: string){
+  getQuestions(apiUrl: string, token: string){
     return this.httpClient.get<{response_code: number, results: Array<Question>}>(`${apiUrl}&token=${token}`);
   }
 }

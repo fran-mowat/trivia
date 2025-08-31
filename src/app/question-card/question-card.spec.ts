@@ -1,23 +1,37 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionCard } from './question-card';
+import { QuestionService } from '../services/question.service';
+import { of } from 'rxjs';
+
+class MockQuestionService{
+  getToken(){
+    return of({response_code: 0, response_message: "response_message", token: "token"});
+  }
+
+  getQuestions(apiUrl: string, token: string){
+    const mockQuestion1 = {question: 'question 1', correct_answer: 'A', incorrect_answers: ['B', 'C', 'D'], category: '', difficulty: '', type: ''};
+    const mockQuestion2 = {question: 'question 2', correct_answer: 'B', incorrect_answers: ['A', 'C', 'D'], category: '', difficulty: '', type: ''};
+    return of({response_code: 0, results: [mockQuestion1, mockQuestion2]});
+  }
+};
 
 describe('QuestionCard', () => {
   let component: QuestionCard;
   let fixture: ComponentFixture<QuestionCard>;
+  let service: QuestionService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuestionCard]
+      imports: [QuestionCard], 
+      providers: [{ provide: QuestionService, useClass: MockQuestionService }]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(QuestionCard);
     component = fixture.componentInstance;
+    service = TestBed.inject(QuestionService);
 
-    const mockQuestion1 = {question: 'question 1', correct_answer: 'A', incorrect_answers: ['B', 'C', 'D'], category: '', difficulty: '', type: ''};
-    const mockQuestion2 = {question: 'question 2', correct_answer: 'B', incorrect_answers: ['A', 'C', 'D'], category: '', difficulty: '', type: ''};
-    component.questions = [mockQuestion1, mockQuestion2];
     fixture.detectChanges();
   });
 
@@ -25,12 +39,16 @@ describe('QuestionCard', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should retrieve an API token', async () => {
-    expect(component.token).toBeFalsy();
+  it('should retrieve an API token', () => {
+    expect(component.token).toBe("token");
+  });
 
-    return component.getToken().then(() => {
-      expect(component.token).toBeTruthy();
-    });
+  it('should retrieve questions from the API and initialise the first question', () => {
+    expect(component.questions.length).toBe(2);
+
+    expect(component.questionValue).toBe('question 1');
+    expect(component.answerValues.length).toBe(4);
+    expect([0, 1, 2, 3].includes(component.correctAnswerIndex)).toBeTrue();
   });
 
   it('should decode HTML', () => {
@@ -39,11 +57,7 @@ describe('QuestionCard', () => {
   });
 
   it('should mark correctly selected answers correctly', () => {
-    component.setQuestion();
-    fixture.detectChanges();
-
     const answerOptions = fixture.nativeElement.querySelectorAll('app-answer-option'); 
-      
     answerOptions[component.correctAnswerIndex].dispatchEvent(new Event('click'));
 
     for (let i = 0; i < 4; i++){
@@ -59,9 +73,6 @@ describe('QuestionCard', () => {
   });
 
   it('should mark incorrectly select answer correctly', () => {
-    component.setQuestion();
-    fixture.detectChanges();
-
     const answerOptions = fixture.nativeElement.querySelectorAll('app-answer-option'); 
       
     const answerIndex = component.correctAnswerIndex ? 0 : 1;
@@ -82,14 +93,13 @@ describe('QuestionCard', () => {
   });
 
   it('should switch to the next question', () => {
-    component.state = 'answered';
-    component.setQuestion();
-    fixture.detectChanges();
-
     expect(component.questionValue).toBe('question 1');
     expect(component.answerValues[component.correctAnswerIndex]).toBe('A');
     expect(component.questionNumber).toBe(1);
 
+    component.state = 'answered';
+    fixture.detectChanges();
+    
     const nextButton = fixture.nativeElement.querySelector('input');
     nextButton.dispatchEvent(new Event('click'));
 
