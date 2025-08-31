@@ -13,8 +13,8 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        }, 
-        "@schematics/angular:service": { 
+        },
+        "@schematics/angular:service": {
           "type": "service"
         }
       },
@@ -97,11 +97,25 @@
             ],
             "styles": [
               "src/styles.scss"
-            ], 
+            ],
             "codeCoverage": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }
