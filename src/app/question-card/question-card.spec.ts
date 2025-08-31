@@ -26,10 +26,11 @@ describe('QuestionCard', () => {
   });
 
   it('should retrieve an API token', async () => {
-    component.apiUrl = 'https://opentdb.com/api.php?type=multiple&amount=10';
+    expect(component.token).toBeFalsy();
 
-    await component.getToken();
-    expect(component.token).toBeTruthy();
+    return component.getToken().then(() => {
+      expect(component.token).toBeTruthy();
+    });
   });
 
   it('should decode HTML', () => {
