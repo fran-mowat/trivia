@@ -2,19 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionCard } from './question-card';
 import { QuestionService } from '../services/question.service';
-import { of } from 'rxjs';
-
-class MockQuestionService{
-  getToken(){
-    return of({response_code: 0, response_message: "response_message", token: "token"});
-  }
-
-  getQuestions(apiUrl: string, token: string){
-    const mockQuestion1 = {question: 'question 1', correct_answer: 'A', incorrect_answers: ['B', 'C', 'D'], category: '', difficulty: '', type: ''};
-    const mockQuestion2 = {question: 'question 2', correct_answer: 'B', incorrect_answers: ['A', 'C', 'D'], category: '', difficulty: '', type: ''};
-    return of({response_code: 0, results: [mockQuestion1, mockQuestion2]});
-  }
-};
+import { MockQuestionService } from '../services/mockQuestionService';
 
 describe('QuestionCard', () => {
   let component: QuestionCard;
@@ -99,7 +87,7 @@ describe('QuestionCard', () => {
 
     component.state = 'answered';
     fixture.detectChanges();
-    
+
     const nextButton = fixture.nativeElement.querySelector('input');
     nextButton.dispatchEvent(new Event('click'));
 

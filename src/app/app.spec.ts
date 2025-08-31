@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { QuestionService } from './services/question.service';
+import { MockQuestionService } from './services/mockQuestionService';
 
 describe('App', () => {
   let component: App;
@@ -8,6 +10,7 @@ describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [{provide: QuestionService, useClass: MockQuestionService}],
     }).compileComponents();
 
     fixture = TestBed.createComponent(App);
