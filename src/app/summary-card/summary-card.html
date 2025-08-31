@@ -4,7 +4,7 @@
         <div>Difficulty: <span>{{ this.difficulty.toLowerCase() }}</span></div>
     </div>
 
-    <div class="progress" aria-valuenow="{{(this.score / this.questionCount) * 100}}" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress" attr.aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
         <div class="percentage"></div>
         <div class="score"></div>
     </div>
