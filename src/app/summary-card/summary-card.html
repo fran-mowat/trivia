@@ -1,14 +1,22 @@
 <div class="summary-card">
-    <div class="context">
-        <div>Category: <span>{{ this.category.toLowerCase() }}</span></div>
-        <div>Difficulty: <span>{{ this.difficulty.toLowerCase() }}</span></div>
+  <div class="context">
+    <div>
+      Category: <span>{{ this.category.toLowerCase() }}</span>
     </div>
-
-    <div class="progress" attr.aria-valuenow="{{this.percentage}}" aria-valuemin="0" aria-valuemax="100">
-        <div class="percentage"></div>
-        <div class="score"></div>
+    <div>
+      Difficulty: <span>{{ this.difficulty.toLowerCase() }}</span>
     </div>
+  </div>
 
-    <div class="subtext">Not happy with your score?</div>
-    <input type="button" value="Play Again" (click)="playAgain.emit()">
+  <div
+    class="progress"
+    attr.aria-valuenow="{{ this.percentage }}"
+    aria-valuemin="0"
+    aria-valuemax="100">
+    <div class="percentage"></div>
+    <div class="score"></div>
+  </div>
+
+  <div class="subtext">Not happy with your score?</div>
+  <input type="button" value="Play Again" (click)="playAgain.emit()" />
 </div>

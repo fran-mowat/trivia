@@ -1,98 +1,109 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { AnswerOption } from "../answer-option/answer-option";
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
+import { AnswerOption } from '../answer-option/answer-option';
 import { CommonModule } from '@angular/common';
-import { Question } from "../interfaces/question";
+import { Question } from '../interfaces/question';
 import { QuestionService } from '../services/question.service';
 
 @Component({
   selector: 'app-question-card',
   imports: [AnswerOption, CommonModule],
   templateUrl: './question-card.html',
-  styleUrl: './question-card.scss'
+  styleUrl: './question-card.scss',
 })
 export class QuestionCard implements OnInit {
-  @Input() apiUrl!: string; 
+  @Input() apiUrl!: string;
   @Input() questionCount!: number;
 
-  questionValue = "";
+  questionValue = '';
   answerValues: string[] = [];
-  answerStates: ("correct" | "incorrect" | "disabled" | "notSelected" | "")[] = ["disabled", "disabled", "disabled", "disabled"];
+  answerStates: ('correct' | 'incorrect' | 'disabled' | 'notSelected' | '')[] =
+    ['disabled', 'disabled', 'disabled', 'disabled'];
   correctAnswerIndex = -1;
   questions: Question[] = [];
-  token = "";
+  token = '';
 
-  answerSelected = false; 
+  answerSelected = false;
   score = 0;
-  questionNumber = 1; 
-  state: "ready" | "answered" = "ready";
+  questionNumber = 1;
+  state: 'ready' | 'answered' = 'ready';
 
   questionService = inject(QuestionService);
 
   @Output() triggerSummary = new EventEmitter<{ score: number }>();
 
   ngOnInit() {
-    this.questionService.getToken().subscribe(response => {
+    this.questionService.getToken().subscribe((response) => {
       this.token = response.token;
-      this.questionService.getQuestions(this.apiUrl, this.token).subscribe(response => {
-        this.questions = response.results;
-        this.setQuestion();
-        this.answerStates = ["", "", "", ""];
-      })
+      this.questionService
+        .getQuestions(this.apiUrl, this.token)
+        .subscribe((response) => {
+          this.questions = response.results;
+          this.setQuestion();
+          this.answerStates = ['', '', '', ''];
+        });
     });
-  };
+  }
 
   setQuestion() {
     const nextQuestion = this.questions[this.questionNumber - 1];
-    this.questionValue = this.decodeHTML(nextQuestion["question"]);
+    this.questionValue = this.decodeHTML(nextQuestion['question']);
 
-    const answers = nextQuestion["incorrect_answers"];
-    this.correctAnswerIndex = Math.floor(Math.random() * 4); 
-    answers.splice(this.correctAnswerIndex, 0, nextQuestion["correct_answer"]);
+    const answers = nextQuestion['incorrect_answers'];
+    this.correctAnswerIndex = Math.floor(Math.random() * 4);
+    answers.splice(this.correctAnswerIndex, 0, nextQuestion['correct_answer']);
 
     answers.forEach((answer, i) => {
       answers[i] = this.decodeHTML(answer);
     });
-    
+
     this.answerValues = answers;
-  };
+  }
 
   decodeHTML(encodedValue: string): string {
-    const parser = new DOMParser(); 
-    const decodedString = parser.parseFromString(encodedValue, "text/html").documentElement.textContent; 
+    const parser = new DOMParser();
+    const decodedString = parser.parseFromString(encodedValue, 'text/html')
+      .documentElement.textContent;
     return decodedString!;
-  };
+  }
 
   selectAnswer(answerNumber: number): void {
-    if (! this.answerSelected){
+    if (!this.answerSelected) {
       this.answerSelected = true;
-      this.state = "answered";
+      this.state = 'answered';
 
-      for (let i = 0; i < 4; i++){
-        if (i === answerNumber && i === this.correctAnswerIndex){
-          this.answerStates[i] = "correct";
+      for (let i = 0; i < 4; i++) {
+        if (i === answerNumber && i === this.correctAnswerIndex) {
+          this.answerStates[i] = 'correct';
           this.score++;
-        } else if (i === answerNumber && i !== this.correctAnswerIndex){
-          this.answerStates[i] = "incorrect";
-        } else if (i === this.correctAnswerIndex){
-          this.answerStates[i] = "notSelected";
+        } else if (i === answerNumber && i !== this.correctAnswerIndex) {
+          this.answerStates[i] = 'incorrect';
+        } else if (i === this.correctAnswerIndex) {
+          this.answerStates[i] = 'notSelected';
         } else {
-          this.answerStates[i] = "disabled";
+          this.answerStates[i] = 'disabled';
         }
-      };
-    };
-  };
+      }
+    }
+  }
 
   changeQuestion(): void {
-    this.state = "ready";
+    this.state = 'ready';
     this.questionNumber++;
     this.setQuestion();
-    this.answerSelected = false; 
-    this.answerStates = ["", "", "", ""];
+    this.answerSelected = false;
+    this.answerStates = ['', '', '', ''];
 
-    const options = document.getElementsByTagName("app-answer-option");
-    Array.from(options).forEach(answerOption => {
-      const answerValue = answerOption.firstChild as HTMLElement; 
-      answerValue.classList = "";
+    const options = document.getElementsByTagName('app-answer-option');
+    Array.from(options).forEach((answerOption) => {
+      const answerValue = answerOption.firstChild as HTMLElement;
+      answerValue.classList = '';
     });
-  };
-};
+  }
+}

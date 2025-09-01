@@ -1,61 +1,63 @@
-.question-card{
+.question-card {
+  border-radius: 5px;
+  padding: 30px;
+
+  .progress-banner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--dark-grey);
+    padding: 5px 10px 15px;
+    font-size: 18px;
+  }
+
+  .question {
+    margin: 40px auto 30px;
+    text-align: center;
+  }
+
+  .answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  input {
+    background-color: var(--dark-blue);
+    border: none;
+    color: white;
     border-radius: 5px;
-    padding: 30px;
+    padding: 15px;
+    margin: 10px 20px;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 18px;
+    transition:
+      background-color 0.2s,
+      transform 0.2s;
+  }
 
-    .progress-banner{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid var(--dark-grey);
-        padding: 5px 10px 15px;
-        font-size: 18px;
-    }
+  input:hover {
+    background-color: var(--dark-blue-hover);
+    transform: scale(1.03);
+  }
 
-    .question{
-        margin: 40px auto 30px;
-        text-align: center;
-    }
-    
-    .answers{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 20px;
-        margin: 20px 0;
-    }
-
-    input{
-        background-color: var(--dark-blue);
-        border: none;
-        color: white;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 10px 20px;
-        width: calc(100% - 40px);
-        box-sizing: border-box;
-        font-family: inherit;
-        font-size: 18px;
-        transition: background-color 0.2s, transform 0.2s;
-    }
-
-    input:hover{
-        background-color: var(--dark-blue-hover);
-        transform: scale(1.03);
-    }
-
-    input.hidden{
-        display: none;
-    }
+  input.hidden {
+    display: none;
+  }
 }
 
 @media (min-width: 600px) {
-    .question-card{
-        width: max(50vw, 400px);
-        border: 1px solid var(--dark-grey);
+  .question-card {
+    width: max(50vw, 400px);
+    border: 1px solid var(--dark-grey);
 
-        .answers{
-            margin: 20px;
-        }
+    .answers {
+      margin: 20px;
     }
+  }
 }

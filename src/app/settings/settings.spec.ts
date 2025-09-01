@@ -8,9 +8,8 @@ describe('Settings', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Settings]
-    })
-    .compileComponents();
+      imports: [Settings],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Settings);
     component = fixture.componentInstance;
@@ -28,24 +27,32 @@ describe('Settings', () => {
   });
 
   it('should display a validation message', () => {
-    const input = fixture.nativeElement.querySelector("#question-count") as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector(
+      '#question-count'
+    ) as HTMLInputElement;
 
     input.value = '9';
     component.validateQuestionCount();
-    expect(component.validationMessage).toBe('Value must be greater than or equal to 10.');
+    expect(component.validationMessage).toBe(
+      'Value must be greater than or equal to 10.'
+    );
 
     input.value = '51';
     component.validateQuestionCount();
-    expect(component.validationMessage).toBe('Value must be less than or equal to 50.');
+    expect(component.validationMessage).toBe(
+      'Value must be less than or equal to 50.'
+    );
 
     input.value = '50';
     component.validateQuestionCount();
-    expect(component.validationMessage).toBeFalsy();    
+    expect(component.validationMessage).toBeFalsy();
   });
 
   it('should disable the start button', () => {
-    const input = fixture.nativeElement.querySelector("#question-count") as HTMLInputElement;
-    const startButton = fixture.nativeElement.querySelector("#start");
+    const input = fixture.nativeElement.querySelector(
+      '#question-count'
+    ) as HTMLInputElement;
+    const startButton = fixture.nativeElement.querySelector('#start');
 
     input.value = '9';
     component.validateQuestionCount();
@@ -61,38 +68,50 @@ describe('Settings', () => {
 
     input.value = '50';
     component.validateQuestionCount();
-    expect(startButton?.classList.contains('disabled')).toBeFalse();  
+    expect(startButton?.classList.contains('disabled')).toBeFalse();
   });
 
   it('should trigger the question card', () => {
     const spy = spyOn(component.triggerQuestions, 'emit');
-  
-    component.constructApiUrl();
-    expect(spy).toHaveBeenCalledWith({url: 'https://opentdb.com/api.php?type=multiple&amount=15', questionCount: 15, difficulty: 'mixed', categoryCode: 0, category: 'Any Category'});
 
-    component.categoryCode = 21; 
+    component.constructApiUrl();
+    expect(spy).toHaveBeenCalledWith({
+      url: 'https://opentdb.com/api.php?type=multiple&amount=15',
+      questionCount: 15,
+      difficulty: 'mixed',
+      categoryCode: 0,
+      category: 'Any Category',
+    });
+
+    component.categoryCode = 21;
     component.difficulty = 'easy';
     component.questionCount = 28;
     component.constructApiUrl();
-    expect(spy).toHaveBeenCalledWith({url: 'https://opentdb.com/api.php?type=multiple&amount=28&difficulty=easy&category=21', questionCount: 28, difficulty: 'easy', categoryCode: 21, category: 'Sports'});
+    expect(spy).toHaveBeenCalledWith({
+      url: 'https://opentdb.com/api.php?type=multiple&amount=28&difficulty=easy&category=21',
+      questionCount: 28,
+      difficulty: 'easy',
+      categoryCode: 21,
+      category: 'Sports',
+    });
   });
 
   it('should validate the question count', () => {
-    const spy = spyOn(component.triggerQuestions, 'emit'); 
+    const spy = spyOn(component.triggerQuestions, 'emit');
 
-    component.questionCount = 9; 
+    component.questionCount = 9;
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(0);
 
-    component.questionCount = 10; 
+    component.questionCount = 10;
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(1);
 
-    component.questionCount = 51; 
+    component.questionCount = 51;
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(1);
 
-    component.questionCount = 50; 
+    component.questionCount = 50;
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(2);
   });

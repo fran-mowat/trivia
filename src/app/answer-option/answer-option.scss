@@ -1,70 +1,73 @@
-div{
-    font-size: 16px;
-    padding: 20px 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 2px solid var(--dark-blue-faded);
-    transition: background-color 0.2s, border-color 0.2s;
-    position: relative;
+div {
+  font-size: 16px;
+  padding: 20px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid var(--dark-blue-faded);
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+  position: relative;
 
-    object{
-        width: 35px;
-        height: 35px;
-        position: absolute;
-        top: -18px;
-        right: -15px;
-    }
+  object {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: -18px;
+    right: -15px;
+  }
 }
 
-div:not(.correct, .notSelected, .incorrect, .disabled):hover{
-    background-color: var(--light-blue);
-    border-color: var(--dark-blue);
+div:not(.correct, .notSelected, .incorrect, .disabled):hover {
+  background-color: var(--light-blue);
+  border-color: var(--dark-blue);
 }
 
-.correct, .notSelected{
-    border-color: var(--green);
-    background-color: var(--light-green);
-    animation: pulse 0.5s;
+.correct,
+.notSelected {
+  border-color: var(--green);
+  background-color: var(--light-green);
+  animation: pulse 0.5s;
 }
 
-.incorrect{
-    border-color: var(--red);
-    background-color: var(--light-red);
-    animation: shake 0.25s 2;
+.incorrect {
+  border-color: var(--red);
+  background-color: var(--light-red);
+  animation: shake 0.25s 2;
 }
 
 @keyframes pulse {
-    0%{
-        transform: scale(1);
-    } 
+  0% {
+    transform: scale(1);
+  }
 
-    50%{
-        transform: scale(1.08);
-    }
+  50% {
+    transform: scale(1.08);
+  }
 
-    100%{
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes shake {
-    0%{
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(0);
+  }
 
-    25%{
-        transform: translateX(2px);
-    }
+  25% {
+    transform: translateX(2px);
+  }
 
-    50%{
-        transform: translateX(0);
-    }
+  50% {
+    transform: translateX(0);
+  }
 
-    75%{
-        transform: translateX(-2px);
-    }
+  75% {
+    transform: translateX(-2px);
+  }
 
-    100%{
-        transform: translateX(0);
-    }
+  100% {
+    transform: translateX(0);
+  }
 }

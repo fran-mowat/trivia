@@ -1,88 +1,91 @@
-.settings{
+.settings {
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+
+  div {
+    width: 100%;
+  }
+
+  .header {
+    font-size: 18px;
+    display: block;
+    margin: 5px 0;
+  }
+
+  input,
+  select {
+    font-family: inherit;
+    font-size: 16px;
+    width: 250px;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid var(--dark-grey);
+  }
+
+  .ng-invalid {
+    border-color: var(--red);
+  }
+
+  .ng-invalid ~ .error-message {
+    display: block;
+  }
+
+  .error-message {
+    display: none;
+    color: var(--red);
+    font-size: 14px;
+    margin: 5px 0 0 5px;
+  }
+
+  .difficulty {
+    label {
+      margin: 5px 10px;
+      font-size: 16px;
+    }
+
+    input {
+      accent-color: var(--dark-blue);
+      width: auto;
+    }
+  }
+
+  input[type='button'] {
+    background-color: var(--dark-blue);
+    transition:
+      background-color 0.2s,
+      transform 0.2s;
+    color: white;
+    border: none;
     border-radius: 5px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+    padding: 15px;
+    margin: 0 20px;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+    font-size: 18px;
+  }
 
-    div{
-        width: 100%;
-    }
+  input[type='button']:hover {
+    background-color: var(--dark-blue-hover);
+    transform: scale(1.03);
+  }
 
-    .header{
-        font-size: 18px;
-        display: block;
-        margin: 5px 0;
-    }
-
-    input, select{
-        font-family: inherit;
-        font-size: 16px;
-        width: 250px;
-        box-sizing: content-box;
-        padding: 5px;
-        border-radius: 3px;
-        border: 1px solid var(--dark-grey);
-    }
-
-    .ng-invalid{
-        border-color: var(--red);
-    }
-
-    .ng-invalid ~ .error-message{
-        display: block;
-    }
-
-    .error-message{
-        display: none;
-        color: var(--red);
-        font-size: 14px;
-        margin: 5px 0 0 5px;
-    }
-
-    .difficulty{
-        label{
-            margin: 5px 10px;
-            font-size: 16px;
-        }
-
-        input{
-            accent-color: var(--dark-blue);
-            width: auto;
-        }
-    }
-
-    input[type=button]{
-        background-color: var(--dark-blue);
-        transition: background-color 0.2s, transform 0.2s;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 15px;
-        margin: 0 20px;
-        width: calc(100% - 40px);
-        box-sizing: border-box;
-        font-size: 18px;
-    }
-
-    input[type=button]:hover{
-        background-color: var(--dark-blue-hover);
-        transform: scale(1.03);
-    }
-
-    input[type=button].disabled{
-        transition: none;
-        transform: none;
-        cursor: not-allowed;
-        background-color: var(--dark-blue-hover);
-    }
+  input[type='button'].disabled {
+    transition: none;
+    transform: none;
+    cursor: not-allowed;
+    background-color: var(--dark-blue-hover);
+  }
 }
 
 @media (min-width: 600px) {
-    .settings{
-        width: max(50vw, 400px);
-        border: 1px solid var(--dark-grey);
-    }
+  .settings {
+    width: max(50vw, 400px);
+    border: 1px solid var(--dark-grey);
+  }
 }

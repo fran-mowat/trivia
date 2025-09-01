@@ -5,10 +5,11 @@ import { Component, Input } from '@angular/core';
   selector: 'app-answer-option',
   imports: [CommonModule],
   templateUrl: './answer-option.html',
-  styleUrl: './answer-option.scss'
+  styleUrl: './answer-option.scss',
 })
 export class AnswerOption {
-  @Input() optionNumber!: string; 
-  @Input() answer = "";
-  @Input() state: "incorrect" | "correct" | "disabled" | "notSelected" | "" = "";
+  @Input() optionNumber!: string;
+  @Input() answer = '';
+  @Input() state: 'incorrect' | 'correct' | 'disabled' | 'notSelected' | '' =
+    '';
 }

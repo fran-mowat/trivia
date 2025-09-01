@@ -10,10 +10,9 @@ describe('QuestionCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuestionCard], 
-      providers: [{ provide: QuestionService, useClass: MockQuestionService }]
-    })
-    .compileComponents();
+      imports: [QuestionCard],
+      providers: [{ provide: QuestionService, useClass: MockQuestionService }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(QuestionCard);
     component = fixture.componentInstance;
@@ -27,7 +26,7 @@ describe('QuestionCard', () => {
   });
 
   it('should retrieve an API token', () => {
-    expect(component.token).toBe("token");
+    expect(component.token).toBe('token');
   });
 
   it('should retrieve questions from the API and initialise the first question', () => {
@@ -39,41 +38,45 @@ describe('QuestionCard', () => {
   });
 
   it('should decode HTML', () => {
-    const decodedString = component.decodeHTML("&quot;&#39;&amp;&lt;&gt;");
+    const decodedString = component.decodeHTML('&quot;&#39;&amp;&lt;&gt;');
     expect(decodedString).toBe('"\'&<>');
   });
 
   it('should mark correctly selected answers correctly', () => {
-    const answerOptions = fixture.nativeElement.querySelectorAll('app-answer-option'); 
-    answerOptions[component.correctAnswerIndex].dispatchEvent(new Event('click'));
+    const answerOptions =
+      fixture.nativeElement.querySelectorAll('app-answer-option');
+    answerOptions[component.correctAnswerIndex].dispatchEvent(
+      new Event('click')
+    );
 
-    for (let i = 0; i < 4; i++){
-      if (i === component.correctAnswerIndex){
+    for (let i = 0; i < 4; i++) {
+      if (i === component.correctAnswerIndex) {
         expect(component.answerStates[i]).toBe('correct');
       } else {
         expect(component.answerStates[i]).toBe('disabled');
       }
-    };
+    }
 
     expect(component.score).toBe(1);
     expect(component.state).toBe('answered');
   });
 
   it('should mark incorrectly select answer correctly', () => {
-    const answerOptions = fixture.nativeElement.querySelectorAll('app-answer-option'); 
-      
+    const answerOptions =
+      fixture.nativeElement.querySelectorAll('app-answer-option');
+
     const answerIndex = component.correctAnswerIndex ? 0 : 1;
     answerOptions[answerIndex].dispatchEvent(new Event('click'));
 
-    for (let i = 0; i < 4; i++){
-      if (i === component.correctAnswerIndex){
+    for (let i = 0; i < 4; i++) {
+      if (i === component.correctAnswerIndex) {
         expect(component.answerStates[i]).toBe('notSelected');
-      } else if (i === answerIndex){
+      } else if (i === answerIndex) {
         expect(component.answerStates[i]).toBe('incorrect');
       } else {
         expect(component.answerStates[i]).toBe('disabled');
       }
-    };
+    }
 
     expect(component.score).toBe(0);
     expect(component.state).toBe('answered');
@@ -99,8 +102,8 @@ describe('QuestionCard', () => {
   it('should trigger the summary card', () => {
     const spy = spyOn(component.triggerSummary, 'emit');
 
-    component.questionCount = 15; 
-    component.questionNumber = 15; 
+    component.questionCount = 15;
+    component.questionNumber = 15;
     component.state = 'answered';
     fixture.detectChanges();
 

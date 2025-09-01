@@ -7,7 +7,9 @@ describe('QuestionService', () => {
   let questionService: QuestionService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [QuestionService, provideHttpClient()]});
+    TestBed.configureTestingModule({
+      providers: [QuestionService, provideHttpClient()],
+    });
     questionService = TestBed.inject(QuestionService);
   });
 
@@ -16,19 +18,21 @@ describe('QuestionService', () => {
   });
 
   it('should retrieve a token', (done) => {
-    questionService.getToken().subscribe(response => {
+    questionService.getToken().subscribe((response) => {
       expect(response.response_code).toBe(0);
       expect(response.response_message).toBe('Token Generated Successfully!');
       expect(response.token).toBeTruthy();
-      done(); 
-    });
-  }); 
-
-  it('should retrieve questions', (done) => {
-    questionService.getQuestions('https://opentdb.com/api.php?type=multiple&amount=3', '').subscribe(response => {
-      expect(response.response_code).toBe(0);
-      expect(response.results.length).toBe(3);
       done();
     });
+  });
+
+  it('should retrieve questions', (done) => {
+    questionService
+      .getQuestions('https://opentdb.com/api.php?type=multiple&amount=3', '')
+      .subscribe((response) => {
+        expect(response.response_code).toBe(0);
+        expect(response.results.length).toBe(3);
+        done();
+      });
   });
 });

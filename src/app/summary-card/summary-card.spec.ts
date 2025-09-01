@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 
 import { SummaryCard } from './summary-card';
 
@@ -8,14 +13,13 @@ describe('SummaryCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SummaryCard], 
-    })
-    .compileComponents();
+      imports: [SummaryCard],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SummaryCard);
     component = fixture.componentInstance;
-    component.category = "Mathematics";
-    component.difficulty = "mixed";
+    component.category = 'Mathematics';
+    component.difficulty = 'mixed';
   });
 
   it('should create', () => {
@@ -30,8 +34,8 @@ describe('SummaryCard', () => {
     expect(categoryDisplay.innerHTML).toBe('mathematics');
     expect(difficultyDisplay.innerHTML).toBe('mixed');
 
-    component.category = "Politics";
-    component.difficulty = "hard";
+    component.category = 'Politics';
+    component.difficulty = 'hard';
     fixture.detectChanges();
 
     expect(categoryDisplay.innerHTML).toBe('politics');
@@ -41,8 +45,8 @@ describe('SummaryCard', () => {
   it('should display scores of 0 instantly', () => {
     const scoreDisplay = fixture.nativeElement.querySelector('.score');
 
-    component.questionCount = 15; 
-    component.score = 0; 
+    component.questionCount = 15;
+    component.score = 0;
     fixture.detectChanges();
 
     expect(scoreDisplay.innerHTML).toBe('0/15');
@@ -51,8 +55,8 @@ describe('SummaryCard', () => {
   it('should should display scores greater than 0', fakeAsync(() => {
     const scoreDisplay = fixture.nativeElement.querySelector('.score');
 
-    component.questionCount = 10; 
-    component.score = 3; 
+    component.questionCount = 10;
+    component.score = 3;
     fixture.detectChanges();
 
     expect(scoreDisplay.innerHTML).toBe('');
@@ -65,8 +69,8 @@ describe('SummaryCard', () => {
   it('should move the progress bar', fakeAsync(() => {
     const setPropertySpy = spyOn(document.documentElement.style, 'setProperty');
 
-    component.score = 5; 
-    component.questionCount = 10; 
+    component.score = 5;
+    component.questionCount = 10;
     fixture.detectChanges();
 
     expect(setPropertySpy).not.toHaveBeenCalled();
@@ -79,8 +83,8 @@ describe('SummaryCard', () => {
   it('should move the progress bar to 100%', fakeAsync(() => {
     const setPropertySpy = spyOn(document.documentElement.style, 'setProperty');
 
-    component.score = 10; 
-    component.questionCount = 10; 
+    component.score = 10;
+    component.questionCount = 10;
     fixture.detectChanges();
 
     expect(setPropertySpy).not.toHaveBeenCalled();
