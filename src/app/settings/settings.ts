@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './settings.html',
   styleUrl: './settings.scss'
 })
-export class Settings {
+export class Settings implements OnInit {
   @Input() questionCount!: number; 
   @Input() categoryCode!: number;
   @Input() difficulty!: string;
@@ -47,11 +47,15 @@ export class Settings {
   };
 
   validateQuestionCount(){
-    let input = document.getElementById("question-count") as HTMLInputElement;
+    const input = document.getElementById("question-count") as HTMLInputElement;
     this.validationMessage = input.validationMessage; 
 
-    let startButton = document.getElementById("start");
-    this.validationMessage ? startButton?.classList.add("disabled") : startButton?.classList.remove("disabled");
+    const startButton = document.getElementById("start");
+    if (this.validationMessage){
+      startButton?.classList.add("disabled")
+    } else {
+      startButton?.classList.remove("disabled");
+    }
   };
 
   constructApiUrl(){
@@ -66,7 +70,7 @@ export class Settings {
         url += `&category=${this.categoryCode}`;
       }
 
-      let categoryOption = this.categoryOptions.find((option) => option.id === Number(this.categoryCode));
+      const categoryOption = this.categoryOptions.find((option) => option.id === Number(this.categoryCode));
       this.category = categoryOption!["name"];
 
       this.triggerQuestions.emit({ url: url, questionCount: this.questionCount, difficulty: this.difficulty, categoryCode: this.categoryCode, category: this.category});

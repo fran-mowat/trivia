@@ -7,7 +7,6 @@ import { MockQuestionService } from '../services/mockQuestionService';
 describe('QuestionCard', () => {
   let component: QuestionCard;
   let fixture: ComponentFixture<QuestionCard>;
-  let service: QuestionService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +17,7 @@ describe('QuestionCard', () => {
 
     fixture = TestBed.createComponent(QuestionCard);
     component = fixture.componentInstance;
-    service = TestBed.inject(QuestionService);
+    TestBed.inject(QuestionService);
 
     fixture.detectChanges();
   });
@@ -40,7 +39,7 @@ describe('QuestionCard', () => {
   });
 
   it('should decode HTML', () => {
-    let decodedString = component.decodeHTML("&quot;&#39;&amp;&lt;&gt;");
+    const decodedString = component.decodeHTML("&quot;&#39;&amp;&lt;&gt;");
     expect(decodedString).toBe('"\'&<>');
   });
 

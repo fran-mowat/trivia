@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-summary-card',
@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './summary-card.html',
   styleUrl: './summary-card.scss'
 })
-export class SummaryCard {
+export class SummaryCard implements OnInit {
   @Input() score!: number; 
   @Input() questionCount!: number; 
   @Input() category!: string; 
@@ -17,10 +17,10 @@ export class SummaryCard {
 
   ngOnInit() {
     this.percentage = (this.score / this.questionCount) * 100;
-    let percentageDisplay = document.getElementsByClassName("percentage")[0];
+    const percentageDisplay = document.getElementsByClassName("percentage")[0];
     percentageDisplay.innerHTML = "0%"; 
 
-    let scoreDisplay = document.getElementsByClassName("score")[0];
+    const scoreDisplay = document.getElementsByClassName("score")[0];
     scoreDisplay.innerHTML = this.score > 0 ? "" : `${this.score}/${this.questionCount}`;
 
     let count = 0; 

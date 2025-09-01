@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { AnswerOption } from "../answer-option/answer-option";
 import { CommonModule } from '@angular/common';
 import { Question } from "../interfaces/question";
@@ -10,15 +10,15 @@ import { QuestionService } from '../services/question.service';
   templateUrl: './question-card.html',
   styleUrl: './question-card.scss'
 })
-export class QuestionCard {
+export class QuestionCard implements OnInit {
   @Input() apiUrl!: string; 
   @Input() questionCount!: number;
 
   questionValue = "";
-  answerValues: Array<string> = [];
-  answerStates: Array<"correct" | "incorrect" | "disabled" | "notSelected" | ""> = ["disabled", "disabled", "disabled", "disabled"];
+  answerValues: string[] = [];
+  answerStates: ("correct" | "incorrect" | "disabled" | "notSelected" | "")[] = ["disabled", "disabled", "disabled", "disabled"];
   correctAnswerIndex = -1;
-  questions: Array<Question> = [];
+  questions: Question[] = [];
   token = "";
 
   answerSelected = false; 
@@ -26,9 +26,9 @@ export class QuestionCard {
   questionNumber = 1; 
   state: "ready" | "answered" = "ready";
 
-  @Output() triggerSummary = new EventEmitter<{ score: number }>();
+  questionService = inject(QuestionService);
 
-  constructor(private questionService: QuestionService){ };
+  @Output() triggerSummary = new EventEmitter<{ score: number }>();
 
   ngOnInit() {
     this.questionService.getToken().subscribe(response => {
@@ -42,10 +42,10 @@ export class QuestionCard {
   };
 
   setQuestion() {
-    let nextQuestion = this.questions[this.questionNumber - 1];
+    const nextQuestion = this.questions[this.questionNumber - 1];
     this.questionValue = this.decodeHTML(nextQuestion["question"]);
 
-    let answers = nextQuestion["incorrect_answers"];
+    const answers = nextQuestion["incorrect_answers"];
     this.correctAnswerIndex = Math.floor(Math.random() * 4); 
     answers.splice(this.correctAnswerIndex, 0, nextQuestion["correct_answer"]);
 
@@ -91,7 +91,7 @@ export class QuestionCard {
 
     const options = document.getElementsByTagName("app-answer-option");
     Array.from(options).forEach(answerOption => {
-      let answerValue = answerOption.firstChild as HTMLElement; 
+      const answerValue = answerOption.firstChild as HTMLElement; 
       answerValue.classList = "";
     });
   };
