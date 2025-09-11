@@ -13,6 +13,11 @@ describe('Settings', () => {
 
     fixture = TestBed.createComponent(Settings);
     component = fixture.componentInstance;
+
+    fixture.componentRef.setInput('questionCount', 15);
+    fixture.componentRef.setInput('categoryCode', 0);
+    fixture.componentRef.setInput('difficulty', 'mixed');
+
     fixture.detectChanges();
   });
 
@@ -21,9 +26,9 @@ describe('Settings', () => {
   });
 
   it('should initialise default instance variables', () => {
-    expect(component.difficulty).toBe('mixed');
-    expect(component.questionCount).toBe(15);
-    expect(component.categoryCode).toBe(0);
+    expect(component.difficulty()).toBe('mixed');
+    expect(component.questionCount()).toBe(15);
+    expect(component.categoryCode()).toBe(0);
   });
 
   it('should display a validation message', () => {
@@ -83,9 +88,9 @@ describe('Settings', () => {
       category: 'Any Category',
     });
 
-    component.categoryCode = 21;
-    component.difficulty = 'easy';
-    component.questionCount = 28;
+    fixture.componentRef.setInput('categoryCode', 21);
+    fixture.componentRef.setInput('difficulty', 'easy');
+    fixture.componentRef.setInput('questionCount', 28);
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledWith({
       url: 'https://opentdb.com/api.php?type=multiple&amount=28&difficulty=easy&category=21',
@@ -99,19 +104,19 @@ describe('Settings', () => {
   it('should validate the question count', () => {
     const spy = spyOn(component.triggerQuestions, 'emit');
 
-    component.questionCount = 9;
+    fixture.componentRef.setInput('questionCount', 9);
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(0);
 
-    component.questionCount = 10;
+    fixture.componentRef.setInput('questionCount', 10);
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(1);
 
-    component.questionCount = 51;
+    fixture.componentRef.setInput('questionCount', 51);
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(1);
 
-    component.questionCount = 50;
+    fixture.componentRef.setInput('questionCount', 50);
     component.constructApiUrl();
     expect(spy).toHaveBeenCalledTimes(2);
   });

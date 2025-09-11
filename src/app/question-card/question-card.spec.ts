@@ -17,6 +17,7 @@ describe('QuestionCard', () => {
     fixture = TestBed.createComponent(QuestionCard);
     component = fixture.componentInstance;
     TestBed.inject(QuestionService);
+    fixture.componentRef.setInput('apiUrl', '');
 
     fixture.detectChanges();
   });
@@ -102,7 +103,7 @@ describe('QuestionCard', () => {
   it('should trigger the summary card', () => {
     const spy = spyOn(component.triggerSummary, 'emit');
 
-    component.questionCount = 15;
+    fixture.componentRef.setInput('questionCount', 15);
     component.questionNumber = 15;
     component.state = 'answered';
     fixture.detectChanges();

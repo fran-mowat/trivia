@@ -18,8 +18,11 @@ describe('SummaryCard', () => {
 
     fixture = TestBed.createComponent(SummaryCard);
     component = fixture.componentInstance;
-    component.category = 'Mathematics';
-    component.difficulty = 'mixed';
+
+    fixture.componentRef.setInput('category', 'Mathematics');
+    fixture.componentRef.setInput('difficulty', 'mixed');
+    fixture.componentRef.setInput('score', 0);
+    fixture.componentRef.setInput('questionCount', 15);
   });
 
   it('should create', () => {
@@ -27,6 +30,8 @@ describe('SummaryCard', () => {
   });
 
   it('should display quiz settings', () => {
+    fixture.componentRef.setInput('category', 'Mathematics');
+    fixture.componentRef.setInput('difficulty', 'mixed');
     fixture.detectChanges();
     const categoryDisplay = fixture.nativeElement.querySelectorAll('span')[0];
     const difficultyDisplay = fixture.nativeElement.querySelectorAll('span')[1];
@@ -34,8 +39,8 @@ describe('SummaryCard', () => {
     expect(categoryDisplay.innerHTML).toBe('mathematics');
     expect(difficultyDisplay.innerHTML).toBe('mixed');
 
-    component.category = 'Politics';
-    component.difficulty = 'hard';
+    fixture.componentRef.setInput('category', 'Politics');
+    fixture.componentRef.setInput('difficulty', 'hard');
     fixture.detectChanges();
 
     expect(categoryDisplay.innerHTML).toBe('politics');
@@ -45,8 +50,8 @@ describe('SummaryCard', () => {
   it('should display scores of 0 instantly', () => {
     const scoreDisplay = fixture.nativeElement.querySelector('.score');
 
-    component.questionCount = 15;
-    component.score = 0;
+    fixture.componentRef.setInput('questionCount', 15);
+    fixture.componentRef.setInput('score', 0);
     fixture.detectChanges();
 
     expect(scoreDisplay.innerHTML).toBe('0/15');
@@ -55,8 +60,8 @@ describe('SummaryCard', () => {
   it('should should display scores greater than 0', fakeAsync(() => {
     const scoreDisplay = fixture.nativeElement.querySelector('.score');
 
-    component.questionCount = 10;
-    component.score = 3;
+    fixture.componentRef.setInput('questionCount', 10);
+    fixture.componentRef.setInput('score', 3);
     fixture.detectChanges();
 
     expect(scoreDisplay.innerHTML).toBe('');
@@ -69,8 +74,8 @@ describe('SummaryCard', () => {
   it('should move the progress bar', fakeAsync(() => {
     const setPropertySpy = spyOn(document.documentElement.style, 'setProperty');
 
-    component.score = 5;
-    component.questionCount = 10;
+    fixture.componentRef.setInput('questionCount', 10);
+    fixture.componentRef.setInput('score', 5);
     fixture.detectChanges();
 
     expect(setPropertySpy).not.toHaveBeenCalled();
@@ -83,8 +88,8 @@ describe('SummaryCard', () => {
   it('should move the progress bar to 100%', fakeAsync(() => {
     const setPropertySpy = spyOn(document.documentElement.style, 'setProperty');
 
-    component.score = 10;
-    component.questionCount = 10;
+    fixture.componentRef.setInput('questionCount', 10);
+    fixture.componentRef.setInput('score', 10);
     fixture.detectChanges();
 
     expect(setPropertySpy).not.toHaveBeenCalled();
