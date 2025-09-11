@@ -12,7 +12,7 @@ export class SummaryCard implements OnInit {
   category = input.required<string>();
   difficulty = input.required<string>();
 
-  percentage!: number;
+  percentage = 0;
 
   playAgain = output();
 
@@ -22,8 +22,8 @@ export class SummaryCard implements OnInit {
     percentageDisplay.innerHTML = '0%';
 
     const scoreDisplay = document.getElementsByClassName('score')[0];
-    scoreDisplay.innerHTML =
-      this.score() > 0 ? '' : `${this.score}/${this.questionCount}`;
+    console.log(`${this.score()}/${this.questionCount()}`);
+    scoreDisplay.innerHTML = this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}`;
 
     let count = 0;
 
@@ -59,7 +59,7 @@ export class SummaryCard implements OnInit {
           );
         }
 
-        scoreDisplay.innerHTML = `${this.score}/${this.questionCount}`;
+        scoreDisplay.innerHTML = `${this.score()}/${this.questionCount()}`;
       }
     }, 1);
   }
