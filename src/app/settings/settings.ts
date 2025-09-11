@@ -9,9 +9,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './settings.scss',
 })
 export class Settings {
-  questionCount = model(15); 
-  categoryCode = model(0); 
-  difficulty = model("mixed");
+  questionCount = model(15);
+  categoryCode = model(0);
+  difficulty = model('mixed');
 
   category = '';
   validationMessage = '';

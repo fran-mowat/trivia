@@ -10,5 +10,5 @@ import { Component, input } from '@angular/core';
 export class AnswerOption {
   optionNumber = input<string>();
   answer = input<string>();
-  state = input<('incorrect' | 'correct' | 'disabled' | 'notSelected' | '')>();
-};
+  state = input<'incorrect' | 'correct' | 'disabled' | 'notSelected' | ''>();
+}

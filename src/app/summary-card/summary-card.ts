@@ -8,9 +8,9 @@ import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
 })
 export class SummaryCard implements OnInit {
   score = input.required<number>();
-  questionCount = input.required<number>(); 
-  category = input.required<string>(); 
-  difficulty = input.required<string>(); 
+  questionCount = input.required<number>();
+  category = input.required<string>();
+  difficulty = input.required<string>();
 
   percentage!: number;
 
