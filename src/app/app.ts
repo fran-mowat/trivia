@@ -15,7 +15,7 @@ export class App {
   url = '';
   score = 0;
   questionCount = 15;
-  difficulty = '';
+  difficulty = 'mixed';
   categoryCode = 0;
   category = '';
 
@@ -32,11 +32,11 @@ export class App {
     this.difficulty = data.difficulty;
     this.categoryCode = data.categoryCode;
     this.category = data.category;
-  }
+  };
 
   startSummary(data: { score: number }) {
     this.screenMode = 'review';
 
     this.score = data.score;
-  }
-}
+  };
+};

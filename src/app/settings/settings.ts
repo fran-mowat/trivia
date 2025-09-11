@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, model, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -8,10 +8,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
 })
-export class Settings implements OnInit {
-  @Input() questionCount!: number;
-  @Input() categoryCode!: number;
-  @Input() difficulty!: string;
+export class Settings {
+  questionCount = model(15); 
+  categoryCode = model(0); 
+  difficulty = model("mixed");
+
   category = '';
   validationMessage = '';
 
@@ -38,20 +39,6 @@ export class Settings implements OnInit {
     category: string;
   }>();
 
-  ngOnInit() {
-    if (!this.difficulty) {
-      this.difficulty = 'mixed';
-    }
-
-    if (!this.questionCount) {
-      this.questionCount = 15;
-    }
-
-    if (!this.categoryCode) {
-      this.categoryCode = 0;
-    }
-  }
-
   validateQuestionCount() {
     const input = document.getElementById('question-count') as HTMLInputElement;
     this.validationMessage = input.validationMessage;
@@ -65,27 +52,27 @@ export class Settings implements OnInit {
   }
 
   constructApiUrl() {
-    if (this.questionCount >= 10 && this.questionCount <= 50) {
-      let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount}`;
+    if (this.questionCount() >= 10 && this.questionCount() <= 50) {
+      let url = `https://opentdb.com/api.php?type=multiple&amount=${this.questionCount()}`;
 
-      if (this.difficulty !== 'mixed') {
-        url += `&difficulty=${this.difficulty}`;
+      if (this.difficulty() !== 'mixed') {
+        url += `&difficulty=${this.difficulty()}`;
       }
 
-      if (this.categoryCode !== 0) {
-        url += `&category=${this.categoryCode}`;
+      if (this.categoryCode() !== 0) {
+        url += `&category=${this.categoryCode()}`;
       }
 
       const categoryOption = this.categoryOptions.find(
-        (option) => option.id === Number(this.categoryCode)
+        (option) => option.id === Number(this.categoryCode())
       );
       this.category = categoryOption!['name'];
 
       this.triggerQuestions.emit({
         url: url,
-        questionCount: this.questionCount,
-        difficulty: this.difficulty,
-        categoryCode: this.categoryCode,
+        questionCount: this.questionCount(),
+        difficulty: this.difficulty(),
+        categoryCode: this.categoryCode(),
         category: this.category,
       });
     }

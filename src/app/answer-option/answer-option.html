@@ -1,14 +1,14 @@
 <div
   [ngClass]="{
-    correct: this.state === 'correct',
-    incorrect: this.state === 'incorrect',
-    disabled: this.state === 'disabled',
-    notSelected: this.state === 'notSelected',
+    correct: this.state() === 'correct',
+    incorrect: this.state() === 'incorrect',
+    disabled: this.state() === 'disabled',
+    notSelected: this.state() === 'notSelected',
   }">
-  {{ this.optionNumber }}&rpar; {{ this.answer }}
-  @if (this.state === 'incorrect') {
+  {{ this.optionNumber() }}&rpar; {{ this.answer() }}
+  @if (this.state() === 'incorrect') {
     <object data="cross-icon.xml" type="image/svg+xml">&nbsp;</object>
-  } @else if (this.state === 'correct') {
+  } @else if (this.state() === 'correct') {
     <object data="tick-icon.xml" type="image/svg+xml">&nbsp;</object>
   }
 </div>

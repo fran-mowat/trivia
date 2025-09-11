@@ -2,7 +2,7 @@ import {
   Component,
   EventEmitter,
   inject,
-  Input,
+  input,
   OnInit,
   Output,
 } from '@angular/core';
@@ -18,8 +18,8 @@ import { QuestionService } from '../services/question.service';
   styleUrl: './question-card.scss',
 })
 export class QuestionCard implements OnInit {
-  @Input() apiUrl!: string;
-  @Input() questionCount!: number;
+  apiUrl = input.required<string>();
+  questionCount = input<number>();
 
   questionValue = '';
   answerValues: string[] = [];
@@ -42,7 +42,7 @@ export class QuestionCard implements OnInit {
     this.questionService.getToken().subscribe((response) => {
       this.token = response.token;
       this.questionService
-        .getQuestions(this.apiUrl, this.token)
+        .getQuestions(this.apiUrl(), this.token)
         .subscribe((response) => {
           this.questions = response.results;
           this.setQuestion();

@@ -8,15 +8,15 @@
       value="15"
       step="5"
       id="question-count"
-      [(ngModel)]="questionCount"
+      [(ngModel)]="this.questionCount"
       (input)="validateQuestionCount()" />
     <div class="error-message">* {{ this.validationMessage }}</div>
   </div>
 
   <div>
     <label for="category" class="header">Select category:</label>
-    <select [(ngModel)]="categoryCode" id="category" name="category">
-      @for (option of categoryOptions; track option.id) {
+    <select [(ngModel)]="this.categoryCode" id="category" name="category">
+      @for (option of this.categoryOptions; track option.id) {
         <option [value]="option.id">{{ option.name }}</option>
       }
     </select>
@@ -29,7 +29,7 @@
       name="difficulty"
       id="easy"
       value="easy"
-      [(ngModel)]="difficulty" />
+      [(ngModel)]="this.difficulty" />
     <label for="easy">Easy</label>
     <br />
     <input
@@ -37,7 +37,7 @@
       name="difficulty"
       id="medium"
       value="medium"
-      [(ngModel)]="difficulty" />
+      [(ngModel)]="this.difficulty" />
     <label for="medium">Medium</label>
     <br />
     <input
@@ -45,7 +45,7 @@
       name="difficulty"
       id="hard"
       value="hard"
-      [(ngModel)]="difficulty" />
+      [(ngModel)]="this.difficulty" />
     <label for="hard">Hard</label>
     <br />
     <input
@@ -54,7 +54,7 @@
       id="mixed"
       value="mixed"
       checked
-      [(ngModel)]="difficulty" />
+      [(ngModel)]="this.difficulty" />
     <label for="mixed">Mixed</label>
   </div>
 

@@ -1,6 +1,6 @@
 <div class="question-card">
   <div class="progress-banner">
-    <div>Question {{ this.questionNumber }} of {{ this.questionCount }}</div>
+    <div>Question {{ this.questionNumber }} of {{ this.questionCount() }}</div>
     <div>Score: {{ this.score }}</div>
   </div>
 
@@ -18,8 +18,8 @@
     }
   </div>
 
-  @if (state === 'answered') {
-    @if (questionCount !== questionNumber) {
+  @if (this.state === 'answered') {
+    @if (this.questionCount() !== this.questionNumber) {
       <input type="button" value="Next" (click)="changeQuestion()" />
     } @else {
       <input
