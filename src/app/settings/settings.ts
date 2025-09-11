@@ -1,6 +1,7 @@
-import { Component, EventEmitter, model, Output } from '@angular/core';
+import { Component, model, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { QuestionDetails } from '../interfaces/questionDetails';
 
 @Component({
   selector: 'app-settings',
@@ -31,13 +32,7 @@ export class Settings {
     { id: 25, name: 'Art' },
   ];
 
-  @Output() triggerQuestions = new EventEmitter<{
-    url: string;
-    questionCount: number;
-    difficulty: string;
-    categoryCode: number;
-    category: string;
-  }>();
+  triggerQuestions = output<QuestionDetails>();
 
   validateQuestionCount() {
     const input = document.getElementById('question-count') as HTMLInputElement;

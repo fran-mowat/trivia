@@ -1,4 +1,4 @@
-import { Component, EventEmitter, input, OnInit, Output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 
 @Component({
   selector: 'app-summary-card',
@@ -14,7 +14,7 @@ export class SummaryCard implements OnInit {
 
   percentage!: number;
 
-  @Output() playAgain = new EventEmitter();
+  playAgain = output();
 
   ngOnInit() {
     this.percentage = (this.score() / this.questionCount()) * 100;

@@ -25,7 +25,7 @@
       <input
         type="button"
         value="Finish"
-        (click)="triggerSummary.emit({ score: this.score })" />
+        (click)="this.triggerSummary.emit(this.score)" />
     }
   }
 </div>

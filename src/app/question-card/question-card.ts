@@ -1,10 +1,9 @@
 import {
   Component,
-  EventEmitter,
   inject,
   input,
   OnInit,
-  Output,
+  output,
 } from '@angular/core';
 import { AnswerOption } from '../answer-option/answer-option';
 import { CommonModule } from '@angular/common';
@@ -36,7 +35,7 @@ export class QuestionCard implements OnInit {
 
   questionService = inject(QuestionService);
 
-  @Output() triggerSummary = new EventEmitter<{ score: number }>();
+  triggerSummary = output<number>();
 
   ngOnInit() {
     this.questionService.getToken().subscribe((response) => {
