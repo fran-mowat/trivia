@@ -1,10 +1,4 @@
-import {
-  Component,
-  inject,
-  input,
-  OnInit,
-  output,
-} from '@angular/core';
+import { Component, inject, input, OnInit, output } from '@angular/core';
 import { AnswerOption } from '../answer-option/answer-option';
 import { CommonModule } from '@angular/common';
 import { Question } from '../interfaces/question';
