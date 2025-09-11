@@ -34,9 +34,9 @@ export class App {
     this.category = data.category;
   }
 
-  startSummary(data: { score: number }) {
+  startSummary(score: number) {
     this.screenMode = 'review';
 
-    this.score = data.score;
+    this.score = score;
   }
 }
