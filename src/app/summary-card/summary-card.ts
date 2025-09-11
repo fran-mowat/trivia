@@ -22,7 +22,6 @@ export class SummaryCard implements OnInit {
     percentageDisplay.innerHTML = '0%';
 
     const scoreDisplay = document.getElementsByClassName('score')[0];
-    console.log(`${this.score()}/${this.questionCount()}`);
     scoreDisplay.innerHTML = this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}`;
 
     let count = 0;
