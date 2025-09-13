@@ -20,16 +20,22 @@
 
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
+
   } @else if (this.mode === 'questions') {
-    <div>Question summary</div>
-
     @for (question of this.questionSummaries(); track $index){
-      <p>{{$index + 1}}. {{question.questionValue}}</p>
-      <p>Your answer: {{question.selectedAnswer}}</p>
+      <div class="question-details">
+        <div class="question-number">{{$index + 1}}</div>
+        <div>
+          <div class="question">{{question.questionValue}}</div>
 
-      @if (question.selectedAnswer !== question.correctAnswer){
-        <p>Correct answer: {{question.correctAnswer}}</p>
-      }
+          @if (question.selectedAnswer === question.correctAnswer){
+            <div class="correct">Your answer: {{question.selectedAnswer}}</div>
+          } @else {
+              <div class="incorrect">Your answer: {{question.selectedAnswer}}</div>
+              <div>Correct answer: {{question.correctAnswer}}</div>
+          }
+        </div>
+      </div>
     }
   }
 </div>

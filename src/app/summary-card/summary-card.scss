@@ -67,6 +67,34 @@
     background-color: var(--dark-blue-hover);
     transform: scale(1.03);
   }
+
+  .question-details{
+    margin: 30px 0;
+    display: grid;
+    grid-template-columns: 50px auto;
+
+    .question-number{
+      font-size: 25px;
+      width: 50px;
+    }
+
+    div{
+      font-size: 18px;
+    }
+
+    .question{
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .correct{
+      color: var(--green);
+    }
+
+    .incorrect{
+      color: var(--red);
+    }
+  }
 }
 
 @media (min-width: 600px) {
