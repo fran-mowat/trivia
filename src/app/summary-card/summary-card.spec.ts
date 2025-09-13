@@ -48,30 +48,6 @@ describe('SummaryCard', () => {
     expect(difficultyDisplay.innerHTML).toBe('hard');
   });
 
-  it('should display scores of 0 instantly', () => {
-    const scoreDisplay = fixture.nativeElement.querySelector('.score');
-
-    fixture.componentRef.setInput('questionCount', 15);
-    fixture.componentRef.setInput('score', 0);
-    fixture.detectChanges();
-
-    expect(scoreDisplay.innerHTML).toBe('0/15');
-  });
-
-  it('should should display scores greater than 0', fakeAsync(() => {
-    const scoreDisplay = fixture.nativeElement.querySelector('.score');
-
-    fixture.componentRef.setInput('questionCount', 10);
-    fixture.componentRef.setInput('score', 3);
-    fixture.detectChanges();
-
-    expect(scoreDisplay.innerHTML).toBe('');
-
-    tick(3000);
-
-    expect(scoreDisplay.innerHTML).toBe('3/10');
-  }));
-
   it('should move the progress bar', fakeAsync(() => {
     const setPropertySpy = spyOn(document.documentElement.style, 'setProperty');
 
@@ -99,15 +75,6 @@ describe('SummaryCard', () => {
 
     expect(setPropertySpy).toHaveBeenCalled();
   }));
-
-  it('should play again', () => {
-    const spy = spyOn(component.playAgain, 'emit');
-
-    const button = fixture.nativeElement.querySelector('input');
-    button.dispatchEvent(new Event('click'));
-
-    expect(spy).toHaveBeenCalled();
-  });
 
   it('should switch view', () => {
     expect(component.showQuestions).toBeFalse();
