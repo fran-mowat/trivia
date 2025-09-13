@@ -3,6 +3,7 @@ import { AnswerOption } from '../answer-option/answer-option';
 import { CommonModule } from '@angular/common';
 import { Question } from '../interfaces/question';
 import { QuestionService } from '../services/question.service';
+import { QuestionAnswerDetails } from '../interfaces/questionAnswerDetails';
 
 @Component({
   selector: 'app-question-card',
@@ -26,10 +27,11 @@ export class QuestionCard implements OnInit {
   score = 0;
   questionNumber = 1;
   state: 'ready' | 'answered' = 'ready';
+  questionSummaries: QuestionAnswerDetails[] = [];
 
   questionService = inject(QuestionService);
 
-  triggerSummary = output<number>();
+  triggerSummary = output<{score: number, questionSummaries: QuestionAnswerDetails[]}>();
 
   ngOnInit() {
     this.questionService.getToken().subscribe((response) => {
@@ -83,6 +85,14 @@ export class QuestionCard implements OnInit {
           this.answerStates[i] = 'disabled';
         }
       }
+
+      const questionDetails = {
+        questionValue: this.questionValue, 
+        correctAnswer: this.answerValues[this.correctAnswerIndex], 
+        selectedAnswer: this.answerValues[answerNumber]
+      };
+
+      this.questionSummaries.push(questionDetails);
     }
   }
 

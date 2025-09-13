@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { QuestionCard } from './question-card/question-card';
 import { Settings } from './settings/settings';
 import { SummaryCard } from './summary-card/summary-card';
+import { QuestionAnswerDetails } from './interfaces/questionAnswerDetails';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class App {
   difficulty = 'mixed';
   categoryCode = 0;
   category = '';
+  questionSummaries!: QuestionAnswerDetails[];
 
   startQuestions(data: {
     url: string;
@@ -34,9 +36,10 @@ export class App {
     this.category = data.category;
   }
 
-  startSummary(score: number) {
+  startSummary(data: {score: number; questionSummaries: QuestionAnswerDetails[]}) {
     this.screenMode = 'review';
 
-    this.score = score;
+    this.score = data.score;
+    this.questionSummaries = data.questionSummaries; 
   }
 }

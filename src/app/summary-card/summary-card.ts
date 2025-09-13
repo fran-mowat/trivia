@@ -1,4 +1,5 @@
 import { Component, input, OnInit, output } from '@angular/core';
+import { QuestionAnswerDetails } from '../interfaces/questionAnswerDetails';
 
 @Component({
   selector: 'app-summary-card',
@@ -6,18 +7,23 @@ import { Component, input, OnInit, output } from '@angular/core';
   templateUrl: './summary-card.html',
   styleUrl: './summary-card.scss',
 })
-export class SummaryCard implements OnInit {
+export class SummaryCard {
   score = input.required<number>();
   questionCount = input.required<number>();
   category = input.required<string>();
   difficulty = input.required<string>();
+  questionSummaries = input.required<QuestionAnswerDetails[]>();
 
   percentage = 0;
+  mode: 'score' | 'questions' = 'questions';
 
   playAgain = output();
 
   ngOnInit() {
     this.percentage = (this.score() / this.questionCount()) * 100;
+  }
+
+  ngAfterViewInit() {
     const percentageDisplay = document.getElementsByClassName('percentage')[0];
     percentageDisplay.innerHTML = '0%';
 

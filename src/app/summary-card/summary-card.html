@@ -8,15 +8,28 @@
     </div>
   </div>
 
-  <div
-    class="progress"
-    attr.aria-valuenow="{{ this.percentage }}"
-    aria-valuemin="0"
-    aria-valuemax="100">
-    <div class="percentage"></div>
-    <div class="score"></div>
-  </div>
+  @if (this.mode === 'score'){
+    <div
+      class="progress"
+      attr.aria-valuenow="{{ this.percentage }}"
+      aria-valuemin="0"
+      aria-valuemax="100">
+      <div class="percentage"></div>
+      <div class="score"></div>
+    </div>
 
-  <div class="subtext">Not happy with your score?</div>
-  <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
+    <div class="subtext">Not happy with your score?</div>
+    <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
+  } @else if (this.mode === 'questions') {
+    <div>Question summary</div>
+
+    @for (question of this.questionSummaries(); track $index){
+      <p>{{$index + 1}}. {{question.questionValue}}</p>
+      <p>Your answer: {{question.selectedAnswer}}</p>
+
+      @if (question.selectedAnswer !== question.correctAnswer){
+        <p>Correct answer: {{question.correctAnswer}}</p>
+      }
+    }
+  }
 </div>
