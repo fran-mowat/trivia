@@ -10,10 +10,6 @@
     </div>
   </div>
 
-  <button class="navigation" [class.forwards]="!this.showQuestions" (click)="switchView()">
-    {{ this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;' }}
-  </button>
-
   @if (!this.showQuestions) {
     <div class="progress" attr.aria-valuenow="{{ this.percentage }}" aria-valuemin="0" aria-valuemax="100">
       <div class="percentage">
@@ -24,9 +20,16 @@
       </div>
     </div>
 
+    <button class="navigation forwards" (click)="switchView()">View answer summary &rarr;</button>
+
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
   } @else if (this.showQuestions) {
+    <button class="navigation" (click)="switchView()">
+      <span>&larr;</span>
+      Back to score
+    </button>
+
     @for (question of this.questionSummaries(); track $index) {
       <div class="question-details">
         <div class="question-number">{{ $index + 1 }}</div>
