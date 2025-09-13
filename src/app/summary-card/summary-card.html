@@ -22,7 +22,10 @@
 
     <button class="navigation forwards" (click)="switchView()">View answer summary&nbsp;&rarr;</button>
 
-    <div class="subtext">Not happy with your score?</div>
+    @if (this.percentage !== 100) {
+      <div class="subtext">Not happy with your score?</div>
+    }
+
     <input type="button" value="Play again" (click)="this.playAgain.emit()" />
   } @else if (this.showQuestions) {
     <button class="navigation" (click)="switchView()">
