@@ -23,6 +23,7 @@ describe('SummaryCard', () => {
     fixture.componentRef.setInput('difficulty', 'mixed');
     fixture.componentRef.setInput('score', 0);
     fixture.componentRef.setInput('questionCount', 15);
+    fixture.componentRef.setInput('questionSummaries', []);
   });
 
   it('should create', () => {
@@ -106,5 +107,26 @@ describe('SummaryCard', () => {
     button.dispatchEvent(new Event('click'));
 
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should switch view', () => {
+    expect(component.showQuestions).toBeFalse();
+    expect(component.switchedView).toBeFalse();
+    expect(component.percentageDisplay).toBeFalsy();
+    expect(component.scoreDisplay).toBeFalsy();
+
+    component.switchView();
+
+    expect(component.showQuestions).toBeTrue();
+    expect(component.switchedView).toBeTrue();
+    expect(component.percentageDisplay).toBeFalsy();
+    expect(component.scoreDisplay).toBeFalsy();
+
+    component.switchView();
+
+    expect(component.showQuestions).toBeFalse();
+    expect(component.switchedView).toBeTrue();
+    expect(component.percentageDisplay).toBeTruthy();
+    expect(component.scoreDisplay).toBeTruthy();
   });
 });
