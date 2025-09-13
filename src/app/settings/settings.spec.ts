@@ -32,21 +32,15 @@ describe('Settings', () => {
   });
 
   it('should display a validation message', () => {
-    const input = fixture.nativeElement.querySelector(
-      '#question-count'
-    ) as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector('#question-count') as HTMLInputElement;
 
     input.value = '9';
     component.validateQuestionCount();
-    expect(component.validationMessage).toBe(
-      'Value must be greater than or equal to 10.'
-    );
+    expect(component.validationMessage).toBe('Value must be greater than or equal to 10.');
 
     input.value = '51';
     component.validateQuestionCount();
-    expect(component.validationMessage).toBe(
-      'Value must be less than or equal to 50.'
-    );
+    expect(component.validationMessage).toBe('Value must be less than or equal to 50.');
 
     input.value = '50';
     component.validateQuestionCount();
@@ -71,9 +65,7 @@ describe('Settings', () => {
   });
 
   it('should disable the start button', () => {
-    const input = fixture.nativeElement.querySelector(
-      '#question-count'
-    ) as HTMLInputElement;
+    const input = fixture.nativeElement.querySelector('#question-count') as HTMLInputElement;
     const startButton = fixture.nativeElement.querySelector('#start');
 
     input.value = '9';

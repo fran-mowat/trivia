@@ -35,33 +35,18 @@ export class SummaryCard implements OnInit, AfterViewInit {
     const interval = setInterval(() => {
       if (count < this.percentage) {
         percentageDisplay.innerHTML = `${count.toFixed(0)}%`;
-        document.documentElement.style.setProperty(
-          '--quiz-percentage',
-          `${count}%`
-        );
-        document.documentElement.style.setProperty(
-          '--quiz-percentage-point',
-          `${count + 0.1}%`
-        );
+        document.documentElement.style.setProperty('--quiz-percentage', `${count}%`);
+        document.documentElement.style.setProperty('--quiz-percentage-point', `${count + 0.1}%`);
         count += 0.2;
       } else {
         clearInterval(interval);
 
         if (this.percentage === 0) {
           document.documentElement.style.setProperty('--quiz-percentage', '0%');
-          document.documentElement.style.setProperty(
-            '--quiz-percentage-point',
-            '0%'
-          );
+          document.documentElement.style.setProperty('--quiz-percentage-point', '0%');
         } else if (this.percentage === 100) {
-          document.documentElement.style.setProperty(
-            '--quiz-percentage',
-            '100%'
-          );
-          document.documentElement.style.setProperty(
-            '--quiz-percentage-point',
-            '100.1%'
-          );
+          document.documentElement.style.setProperty('--quiz-percentage', '100%');
+          document.documentElement.style.setProperty('--quiz-percentage-point', '100.1%');
         }
 
         scoreDisplay.innerHTML = `${this.score()}/${this.questionCount()}`;

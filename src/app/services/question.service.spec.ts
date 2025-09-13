@@ -27,12 +27,10 @@ describe('QuestionService', () => {
   });
 
   it('should retrieve questions', (done) => {
-    questionService
-      .getQuestions('https://opentdb.com/api.php?type=multiple&amount=3', '')
-      .subscribe((response) => {
-        expect(response.response_code).toBe(0);
-        expect(response.results.length).toBe(3);
-        done();
-      });
+    questionService.getQuestions('https://opentdb.com/api.php?type=multiple&amount=3', '').subscribe((response) => {
+      expect(response.response_code).toBe(0);
+      expect(response.results.length).toBe(3);
+      done();
+    });
   });
 });

@@ -17,8 +17,12 @@ export class QuestionCard implements OnInit {
 
   questionValue = '';
   answerValues: string[] = [];
-  answerStates: ('correct' | 'incorrect' | 'disabled' | 'notSelected' | '')[] =
-    ['disabled', 'disabled', 'disabled', 'disabled'];
+  answerStates: ('correct' | 'incorrect' | 'disabled' | 'notSelected' | '')[] = [
+    'disabled',
+    'disabled',
+    'disabled',
+    'disabled',
+  ];
   correctAnswerIndex = -1;
   questions: Question[] = [];
   token = '';
@@ -39,13 +43,11 @@ export class QuestionCard implements OnInit {
   ngOnInit() {
     this.questionService.getToken().subscribe((response) => {
       this.token = response.token;
-      this.questionService
-        .getQuestions(this.apiUrl(), this.token)
-        .subscribe((response) => {
-          this.questions = response.results;
-          this.setQuestion();
-          this.answerStates = ['', '', '', ''];
-        });
+      this.questionService.getQuestions(this.apiUrl(), this.token).subscribe((response) => {
+        this.questions = response.results;
+        this.setQuestion();
+        this.answerStates = ['', '', '', ''];
+      });
     });
   }
 
@@ -66,8 +68,7 @@ export class QuestionCard implements OnInit {
 
   decodeHTML(encodedValue: string): string {
     const parser = new DOMParser();
-    const decodedString = parser.parseFromString(encodedValue, 'text/html')
-      .documentElement.textContent;
+    const decodedString = parser.parseFromString(encodedValue, 'text/html').documentElement.textContent;
     return decodedString!;
   }
 

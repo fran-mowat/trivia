@@ -1,39 +1,26 @@
 <div class="summary-card">
   <div class="context">
     <div>
-      Category: <span>{{ this.category().toLowerCase() }}</span>
+      Category:
+      <span>{{ this.category().toLowerCase() }}</span>
     </div>
     <div>
-      Difficulty: <span>{{ this.difficulty().toLowerCase() }}</span>
+      Difficulty:
+      <span>{{ this.difficulty().toLowerCase() }}</span>
     </div>
   </div>
 
-  <button
-    class="navigation"
-    [class.forwards]="!this.showQuestions"
-    (click)="switchView()">
-    {{
-      this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'
-    }}
+  <button class="navigation" [class.forwards]="!this.showQuestions" (click)="switchView()">
+    {{ this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;' }}
   </button>
 
   @if (!this.showQuestions) {
-    <div
-      class="progress"
-      attr.aria-valuenow="{{ this.percentage }}"
-      aria-valuemin="0"
-      aria-valuemax="100">
+    <div class="progress" attr.aria-valuenow="{{ this.percentage }}" aria-valuemin="0" aria-valuemax="100">
       <div class="percentage">
         {{ this.switchedView ? this.percentageDisplay : '0%' }}
       </div>
       <div class="score">
-        {{
-          this.switchedView
-            ? this.scoreDisplay
-            : this.score() > 0
-              ? ''
-              : `${this.score()}/${this.questionCount()}`
-        }}
+        {{ this.switchedView ? this.scoreDisplay : this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}` }}
       </div>
     </div>
 
@@ -47,13 +34,9 @@
           <div class="question">{{ question.questionValue }}</div>
 
           @if (question.selectedAnswer === question.correctAnswer) {
-            <div class="correct">
-              Your answer: {{ question.selectedAnswer }}
-            </div>
+            <div class="correct">Your answer: {{ question.selectedAnswer }}</div>
           } @else {
-            <div class="incorrect">
-              Your answer: {{ question.selectedAnswer }}
-            </div>
+            <div class="incorrect">Your answer: {{ question.selectedAnswer }}</div>
             <div>Correct answer: {{ question.correctAnswer }}</div>
           }
         </div>

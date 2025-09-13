@@ -48,32 +48,22 @@ export class Settings {
 
   randomiseQuizSettings() {
     let questionCountOptions = [10, 15, 20, 25, 30, 35, 40, 45, 50];
-    questionCountOptions = questionCountOptions.filter(
-      (option) => option != this.questionCount()
-    );
-    const questionCountIndex = Math.floor(
-      Math.random() * questionCountOptions.length
-    );
+    questionCountOptions = questionCountOptions.filter((option) => option != this.questionCount());
+    const questionCountIndex = Math.floor(Math.random() * questionCountOptions.length);
     this.questionCount.set(questionCountOptions[questionCountIndex]);
 
     let selectedCategoryId;
 
     do {
-      const categoryIndex = Math.floor(
-        Math.random() * this.categoryOptions.length
-      );
+      const categoryIndex = Math.floor(Math.random() * this.categoryOptions.length);
       selectedCategoryId = this.categoryOptions[categoryIndex].id;
     } while (this.categoryCode() == selectedCategoryId);
 
     this.categoryCode.set(selectedCategoryId);
 
     let difficultyOptions = ['easy', 'medium', 'hard', 'mixed'];
-    difficultyOptions = difficultyOptions.filter(
-      (option) => option != this.difficulty()
-    );
-    const difficultyIndex = Math.floor(
-      Math.random() * difficultyOptions.length
-    );
+    difficultyOptions = difficultyOptions.filter((option) => option != this.difficulty());
+    const difficultyIndex = Math.floor(Math.random() * difficultyOptions.length);
     this.difficulty.set(difficultyOptions[difficultyIndex]);
   }
 
@@ -89,9 +79,7 @@ export class Settings {
         url += `&category=${this.categoryCode()}`;
       }
 
-      const categoryOption = this.categoryOptions.find(
-        (option) => option.id === Number(this.categoryCode())
-      );
+      const categoryOption = this.categoryOptions.find((option) => option.id === Number(this.categoryCode()));
       this.category = categoryOption!['name'];
 
       this.triggerQuestions.emit({

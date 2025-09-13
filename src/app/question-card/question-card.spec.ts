@@ -44,11 +44,8 @@ describe('QuestionCard', () => {
   });
 
   it('should mark correctly selected answers correctly', () => {
-    const answerOptions =
-      fixture.nativeElement.querySelectorAll('app-answer-option');
-    answerOptions[component.correctAnswerIndex].dispatchEvent(
-      new Event('click')
-    );
+    const answerOptions = fixture.nativeElement.querySelectorAll('app-answer-option');
+    answerOptions[component.correctAnswerIndex].dispatchEvent(new Event('click'));
 
     for (let i = 0; i < 4; i++) {
       if (i === component.correctAnswerIndex) {
@@ -63,8 +60,7 @@ describe('QuestionCard', () => {
   });
 
   it('should mark incorrectly select answer correctly', () => {
-    const answerOptions =
-      fixture.nativeElement.querySelectorAll('app-answer-option');
+    const answerOptions = fixture.nativeElement.querySelectorAll('app-answer-option');
 
     const answerIndex = component.correctAnswerIndex ? 0 : 1;
     answerOptions[answerIndex].dispatchEvent(new Event('click'));

@@ -1,19 +1,8 @@
 <div class="settings">
-  <button
-    id="randomise"
-    title="Randomise quiz settings"
-    (click)="randomiseQuizSettings()">
-    <svg
-      fill="#23319a"
-      viewBox="0 0 14 14"
-      role="img"
-      focusable="false"
-      xmlns="http://www.w3.org/2000/svg">
+  <button id="randomise" title="Randomise quiz settings" (click)="randomiseQuizSettings()">
+    <svg fill="#23319a" viewBox="0 0 14 14" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-      <g
-        id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"></g>
+      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
         <path
           fill="#94a0c3"
@@ -25,7 +14,7 @@
   </button>
 
   <div>
-    <label for="question-count" class="header">Number of questions: </label>
+    <label for="question-count" class="header">Number of questions:</label>
     <input
       type="number"
       min="10"
@@ -49,37 +38,16 @@
 
   <div class="difficulty">
     <div class="header label">Select difficulty:</div>
-    <input
-      type="radio"
-      name="difficulty"
-      id="easy"
-      value="easy"
-      [(ngModel)]="this.difficulty" />
+    <input type="radio" name="difficulty" id="easy" value="easy" [(ngModel)]="this.difficulty" />
     <label for="easy">Easy</label>
     <br />
-    <input
-      type="radio"
-      name="difficulty"
-      id="medium"
-      value="medium"
-      [(ngModel)]="this.difficulty" />
+    <input type="radio" name="difficulty" id="medium" value="medium" [(ngModel)]="this.difficulty" />
     <label for="medium">Medium</label>
     <br />
-    <input
-      type="radio"
-      name="difficulty"
-      id="hard"
-      value="hard"
-      [(ngModel)]="this.difficulty" />
+    <input type="radio" name="difficulty" id="hard" value="hard" [(ngModel)]="this.difficulty" />
     <label for="hard">Hard</label>
     <br />
-    <input
-      type="radio"
-      name="difficulty"
-      id="mixed"
-      value="mixed"
-      checked
-      [(ngModel)]="this.difficulty" />
+    <input type="radio" name="difficulty" id="mixed" value="mixed" checked [(ngModel)]="this.difficulty" />
     <label for="mixed">Mixed</label>
   </div>
 

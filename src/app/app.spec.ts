@@ -26,9 +26,7 @@ describe('App', () => {
     expect(component.screenMode).toBe('settings');
 
     expect(fixture.nativeElement.querySelector('app-settings')).toBeTruthy();
-    expect(
-      fixture.nativeElement.querySelector('app-question-card')
-    ).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('app-question-card')).toBeFalsy();
     expect(fixture.nativeElement.querySelector('app-summary-card')).toBeFalsy();
   });
 
@@ -45,9 +43,7 @@ describe('App', () => {
     expect(component.screenMode).toBe('questions');
 
     expect(fixture.nativeElement.querySelector('app-settings')).toBeFalsy();
-    expect(
-      fixture.nativeElement.querySelector('app-question-card')
-    ).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-question-card')).toBeTruthy();
     expect(fixture.nativeElement.querySelector('app-summary-card')).toBeFalsy();
   });
 
@@ -58,11 +54,7 @@ describe('App', () => {
     expect(component.screenMode).toBe('review');
 
     expect(fixture.nativeElement.querySelector('app-settings')).toBeFalsy();
-    expect(
-      fixture.nativeElement.querySelector('app-question-card')
-    ).toBeFalsy();
-    expect(
-      fixture.nativeElement.querySelector('app-summary-card')
-    ).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-question-card')).toBeFalsy();
+    expect(fixture.nativeElement.querySelector('app-summary-card')).toBeTruthy();
   });
 });

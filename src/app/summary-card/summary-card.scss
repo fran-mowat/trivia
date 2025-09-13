@@ -55,10 +55,7 @@
     margin: 40px auto;
     background:
       radial-gradient(white 0% 60%, transparent 60.3% 100%),
-      conic-gradient(
-        var(--dark-blue) 0% var(--quiz-percentage),
-        var(--light-blue) var(--quiz-percentage-point) 100%
-      );
+      conic-gradient(var(--dark-blue) 0% var(--quiz-percentage), var(--light-blue) var(--quiz-percentage-point) 100%);
 
     .percentage {
       font-size: 60px;
