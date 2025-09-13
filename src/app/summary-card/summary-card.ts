@@ -29,7 +29,6 @@ export class SummaryCard implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     const percentageDisplay = document.getElementsByClassName('percentage')[0];
-    const scoreDisplay = document.getElementsByClassName('score')[0];
     let count = 0;
 
     const interval = setInterval(() => {

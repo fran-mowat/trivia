@@ -20,11 +20,10 @@
       </div>
     </div>
 
-    <button class="navigation forwards" (click)="switchView()">View answer summary &rarr;</button>
+    <button class="navigation forwards" (click)="switchView()">View answer summary&nbsp;&rarr;</button>
 
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play again" (click)="this.playAgain.emit()" />
-
   } @else if (this.showQuestions) {
     <button class="navigation" (click)="switchView()">
       <span>&larr;</span>

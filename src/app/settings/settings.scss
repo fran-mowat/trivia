@@ -14,13 +14,23 @@
 
   #randomise {
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 10px;
+    right: 10px;
     width: 50px;
     height: 50px;
     transition: transform 0.2s;
     border: none;
-    background-color: white;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  @media (min-width: 450px) {
+    #randomise {
+      top: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+    }
   }
 
   #randomise:hover {
@@ -84,6 +94,7 @@
     width: calc(100% - 40px);
     box-sizing: border-box;
     font-size: 18px;
+    cursor: pointer;
   }
 
   input[type='button']:hover {
@@ -101,7 +112,7 @@
 
 @media (min-width: 600px) {
   .settings {
-    width: max(50vw, 400px);
+    width: max(60vw, 500px);
     border: 1px solid var(--dark-grey);
   }
 }
