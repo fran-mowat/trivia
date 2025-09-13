@@ -16,7 +16,7 @@ export class SummaryCard implements OnInit, AfterViewInit {
 
   percentage = 0;
   showQuestions = false;
-  switchedView = false;
+  animationComplete = false;
 
   percentageDisplay = '';
   scoreDisplay = '';
@@ -49,18 +49,14 @@ export class SummaryCard implements OnInit, AfterViewInit {
           document.documentElement.style.setProperty('--quiz-percentage-point', '100.1%');
         }
 
-        scoreDisplay.innerHTML = `${this.score()}/${this.questionCount()}`;
+        this.animationComplete = true;
+        this.percentageDisplay = `${this.percentage.toFixed(0)}%`;
+        this.scoreDisplay = `${this.score()}/${this.questionCount()}`;
       }
     }, 1);
   }
 
   switchView() {
     this.showQuestions = !this.showQuestions;
-    this.switchedView = true;
-
-    if (!this.showQuestions) {
-      this.percentageDisplay = `${this.percentage.toFixed(0)}%`;
-      this.scoreDisplay = `${this.score()}/${this.questionCount()}`;
-    }
   }
 }

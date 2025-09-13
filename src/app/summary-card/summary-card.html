@@ -13,10 +13,10 @@
   @if (!this.showQuestions) {
     <div class="progress" attr.aria-valuenow="{{ this.percentage }}" aria-valuemin="0" aria-valuemax="100">
       <div class="percentage">
-        {{ this.switchedView ? this.percentageDisplay : '0%' }}
+        {{ this.animationComplete ? this.percentageDisplay : '0%' }}
       </div>
       <div class="score">
-        {{ this.switchedView ? this.scoreDisplay : this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}` }}
+        {{ this.animationComplete ? this.scoreDisplay : '' }}
       </div>
     </div>
 
@@ -24,6 +24,7 @@
 
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
+
   } @else if (this.showQuestions) {
     <button class="navigation" (click)="switchView()">
       <span>&larr;</span>
