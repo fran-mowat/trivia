@@ -15,7 +15,7 @@ export class SummaryCard {
   questionSummaries = input.required<QuestionAnswerDetails[]>();
 
   percentage = 0;
-  mode: 'score' | 'questions' = 'questions';
+  showQuestions = false;
 
   playAgain = output();
 

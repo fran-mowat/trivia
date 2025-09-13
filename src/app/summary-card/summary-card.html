@@ -8,7 +8,10 @@
     </div>
   </div>
 
-  @if (this.mode === 'score'){
+  <div class="navigation" [class.forwards]="!this.showQuestions" (click)="this.showQuestions = !this.showQuestions">{{this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'}}</div>
+
+  @if (!this.showQuestions){
+    
     <div
       class="progress"
       attr.aria-valuenow="{{ this.percentage }}"
@@ -21,7 +24,8 @@
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
 
-  } @else if (this.mode === 'questions') {
+  } @else if (this.showQuestions) {
+
     @for (question of this.questionSummaries(); track $index){
       <div class="question-details">
         <div class="question-number">{{$index + 1}}</div>
