@@ -51,7 +51,7 @@ export class Settings {
     questionCountOptions = questionCountOptions.filter(
       (option) => option != this.questionCount()
     );
-    let questionCountIndex = Math.floor(
+    const questionCountIndex = Math.floor(
       Math.random() * questionCountOptions.length
     );
     this.questionCount.set(questionCountOptions[questionCountIndex]);
@@ -59,7 +59,7 @@ export class Settings {
     let selectedCategoryId;
 
     do {
-      let categoryIndex = Math.floor(
+      const categoryIndex = Math.floor(
         Math.random() * this.categoryOptions.length
       );
       selectedCategoryId = this.categoryOptions[categoryIndex].id;
@@ -71,7 +71,9 @@ export class Settings {
     difficultyOptions = difficultyOptions.filter(
       (option) => option != this.difficulty()
     );
-    let difficultyIndex = Math.floor(Math.random() * difficultyOptions.length);
+    const difficultyIndex = Math.floor(
+      Math.random() * difficultyOptions.length
+    );
     this.difficulty.set(difficultyOptions[difficultyIndex]);
   }
 

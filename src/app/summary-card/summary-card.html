@@ -8,14 +8,14 @@
     </div>
   </div>
 
-  <div
+  <button
     class="navigation"
     [class.forwards]="!this.showQuestions"
     (click)="switchView()">
     {{
       this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'
     }}
-  </div>
+  </button>
 
   @if (!this.showQuestions) {
     <div

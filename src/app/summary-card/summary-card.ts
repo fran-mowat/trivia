@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output } from '@angular/core';
+import { AfterViewInit, Component, input, OnInit, output } from '@angular/core';
 import { QuestionAnswerDetails } from '../interfaces/questionAnswerDetails';
 
 @Component({
@@ -7,7 +7,7 @@ import { QuestionAnswerDetails } from '../interfaces/questionAnswerDetails';
   templateUrl: './summary-card.html',
   styleUrl: './summary-card.scss',
 })
-export class SummaryCard {
+export class SummaryCard implements OnInit, AfterViewInit {
   score = input.required<number>();
   questionCount = input.required<number>();
   category = input.required<string>();

@@ -20,6 +20,9 @@
     color: var(--dark-blue);
     margin: 20px 5px;
     width: fit-content;
+    display: block;
+    background-color: white;
+    border: none;
   }
 
   .navigation:hover {
@@ -27,6 +30,7 @@
   }
 
   .navigation.forwards {
+    font-family: inherit;
     font-size: 22px;
     margin: 30px auto;
     border: 2px solid var(--mid-blue);
