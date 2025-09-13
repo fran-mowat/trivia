@@ -53,6 +53,30 @@ describe('Settings', () => {
     expect(component.validationMessage).toBeFalsy();
   });
 
+  it('should randomise setting variables', () => {
+    let oldCategoryCode = component.categoryCode();
+    let oldDifficulty = component.difficulty(); 
+    let oldQuestionCount = component.questionCount();
+
+    const randomiseButton = fixture.nativeElement.querySelector('#randomise');
+    randomiseButton.dispatchEvent(new Event('click'));
+
+    let newCategoryCode = component.categoryCode(); 
+    let newDifficulty = component.difficulty(); 
+    let newQuestionCount = component.questionCount();
+
+    expect(newCategoryCode).not.toBe(oldCategoryCode);
+    expect(newDifficulty).not.toBe(oldDifficulty);
+    expect(newQuestionCount).not.toBe(oldQuestionCount);
+  });
+
+  it('should work', () => {
+    component.randomiseQuizSettings();
+    console.log("test");
+    console.log(component.questionCount());
+    console.log(component.difficulty());
+  });
+
   it('should disable the start button', () => {
     const input = fixture.nativeElement.querySelector(
       '#question-count'
