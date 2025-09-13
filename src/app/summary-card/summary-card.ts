@@ -16,6 +16,10 @@ export class SummaryCard {
 
   percentage = 0;
   showQuestions = false;
+  switchedView = false; 
+
+  percentageDisplay = '';
+  scoreDisplay = '';
 
   playAgain = output();
 
@@ -25,12 +29,7 @@ export class SummaryCard {
 
   ngAfterViewInit() {
     const percentageDisplay = document.getElementsByClassName('percentage')[0];
-    percentageDisplay.innerHTML = '0%';
-
     const scoreDisplay = document.getElementsByClassName('score')[0];
-    scoreDisplay.innerHTML =
-      this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}`;
-
     let count = 0;
 
     const interval = setInterval(() => {
@@ -68,5 +67,15 @@ export class SummaryCard {
         scoreDisplay.innerHTML = `${this.score()}/${this.questionCount()}`;
       }
     }, 1);
+  }
+
+  switchView(){
+    this.showQuestions = !this.showQuestions; 
+    this.switchedView = true;
+
+    if (!this.showQuestions){
+      this.percentageDisplay = `${this.percentage.toFixed(0)}%`;
+      this.scoreDisplay = `${this.score()}/${this.questionCount()}`;
+    }
   }
 }

@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div class="navigation" [class.forwards]="!this.showQuestions" (click)="this.showQuestions = !this.showQuestions">{{this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'}}</div>
+  <div class="navigation" [class.forwards]="!this.showQuestions" (click)="switchView()">{{this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'}}</div>
 
   @if (!this.showQuestions){
     
@@ -17,8 +17,8 @@
       attr.aria-valuenow="{{ this.percentage }}"
       aria-valuemin="0"
       aria-valuemax="100">
-      <div class="percentage"></div>
-      <div class="score"></div>
+      <div class="percentage">{{ this.switchedView ? this.percentageDisplay : '0%'}}</div>
+      <div class="score">{{ this.switchedView ? this.scoreDisplay : (this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}`)}}</div>
     </div>
 
     <div class="subtext">Not happy with your score?</div>
