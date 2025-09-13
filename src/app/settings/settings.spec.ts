@@ -70,13 +70,6 @@ describe('Settings', () => {
     expect(newQuestionCount).not.toBe(oldQuestionCount);
   });
 
-  it('should work', () => {
-    component.randomiseQuizSettings();
-    console.log("test");
-    console.log(component.questionCount());
-    console.log(component.difficulty());
-  });
-
   it('should disable the start button', () => {
     const input = fixture.nativeElement.querySelector(
       '#question-count'
