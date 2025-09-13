@@ -8,35 +8,53 @@
     </div>
   </div>
 
-  <div class="navigation" [class.forwards]="!this.showQuestions" (click)="switchView()">{{this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'}}</div>
+  <div
+    class="navigation"
+    [class.forwards]="!this.showQuestions"
+    (click)="switchView()">
+    {{
+      this.showQuestions ? '&larr; Back to score' : 'View answer summary &rarr;'
+    }}
+  </div>
 
-  @if (!this.showQuestions){
-    
+  @if (!this.showQuestions) {
     <div
       class="progress"
       attr.aria-valuenow="{{ this.percentage }}"
       aria-valuemin="0"
       aria-valuemax="100">
-      <div class="percentage">{{ this.switchedView ? this.percentageDisplay : '0%'}}</div>
-      <div class="score">{{ this.switchedView ? this.scoreDisplay : (this.score() > 0 ? '' : `${this.score()}/${this.questionCount()}`)}}</div>
+      <div class="percentage">
+        {{ this.switchedView ? this.percentageDisplay : '0%' }}
+      </div>
+      <div class="score">
+        {{
+          this.switchedView
+            ? this.scoreDisplay
+            : this.score() > 0
+              ? ''
+              : `${this.score()}/${this.questionCount()}`
+        }}
+      </div>
     </div>
 
     <div class="subtext">Not happy with your score?</div>
     <input type="button" value="Play Again" (click)="this.playAgain.emit()" />
-
   } @else if (this.showQuestions) {
-
-    @for (question of this.questionSummaries(); track $index){
+    @for (question of this.questionSummaries(); track $index) {
       <div class="question-details">
-        <div class="question-number">{{$index + 1}}</div>
+        <div class="question-number">{{ $index + 1 }}</div>
         <div>
-          <div class="question">{{question.questionValue}}</div>
+          <div class="question">{{ question.questionValue }}</div>
 
-          @if (question.selectedAnswer === question.correctAnswer){
-            <div class="correct">Your answer: {{question.selectedAnswer}}</div>
+          @if (question.selectedAnswer === question.correctAnswer) {
+            <div class="correct">
+              Your answer: {{ question.selectedAnswer }}
+            </div>
           } @else {
-              <div class="incorrect">Your answer: {{question.selectedAnswer}}</div>
-              <div>Correct answer: {{question.correctAnswer}}</div>
+            <div class="incorrect">
+              Your answer: {{ question.selectedAnswer }}
+            </div>
+            <div>Correct answer: {{ question.correctAnswer }}</div>
           }
         </div>
       </div>

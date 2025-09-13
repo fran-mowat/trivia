@@ -55,14 +55,14 @@ describe('Settings', () => {
 
   it('should randomise setting variables', () => {
     let oldCategoryCode = component.categoryCode();
-    let oldDifficulty = component.difficulty(); 
+    let oldDifficulty = component.difficulty();
     let oldQuestionCount = component.questionCount();
 
     const randomiseButton = fixture.nativeElement.querySelector('#randomise');
     randomiseButton.dispatchEvent(new Event('click'));
 
-    let newCategoryCode = component.categoryCode(); 
-    let newDifficulty = component.difficulty(); 
+    let newCategoryCode = component.categoryCode();
+    let newDifficulty = component.difficulty();
     let newQuestionCount = component.questionCount();
 
     expect(newCategoryCode).not.toBe(oldCategoryCode);

@@ -16,7 +16,7 @@ export class SummaryCard {
 
   percentage = 0;
   showQuestions = false;
-  switchedView = false; 
+  switchedView = false;
 
   percentageDisplay = '';
   scoreDisplay = '';
@@ -69,11 +69,11 @@ export class SummaryCard {
     }, 1);
   }
 
-  switchView(){
-    this.showQuestions = !this.showQuestions; 
+  switchView() {
+    this.showQuestions = !this.showQuestions;
     this.switchedView = true;
 
-    if (!this.showQuestions){
+    if (!this.showQuestions) {
       this.percentageDisplay = `${this.percentage.toFixed(0)}%`;
       this.scoreDisplay = `${this.score()}/${this.questionCount()}`;
     }

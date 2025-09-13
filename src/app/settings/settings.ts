@@ -29,7 +29,7 @@ export class Settings {
     { id: 24, name: 'Politics' },
     { id: 20, name: 'Mythology' },
     { id: 27, name: 'Animals' },
-    { id: 25, name: 'Art' }
+    { id: 25, name: 'Art' },
   ];
 
   triggerQuestions = output<QuestionDetails>();
@@ -46,23 +46,31 @@ export class Settings {
     }
   }
 
-  randomiseQuizSettings(){
+  randomiseQuizSettings() {
     let questionCountOptions = [10, 15, 20, 25, 30, 35, 40, 45, 50];
-    questionCountOptions = questionCountOptions.filter(option => option != this.questionCount());
-    let questionCountIndex = Math.floor(Math.random() * questionCountOptions.length);
+    questionCountOptions = questionCountOptions.filter(
+      (option) => option != this.questionCount()
+    );
+    let questionCountIndex = Math.floor(
+      Math.random() * questionCountOptions.length
+    );
     this.questionCount.set(questionCountOptions[questionCountIndex]);
 
-    let selectedCategoryId; 
+    let selectedCategoryId;
 
     do {
-      let categoryIndex = Math.floor(Math.random() * this.categoryOptions.length);
+      let categoryIndex = Math.floor(
+        Math.random() * this.categoryOptions.length
+      );
       selectedCategoryId = this.categoryOptions[categoryIndex].id;
     } while (this.categoryCode() == selectedCategoryId);
 
     this.categoryCode.set(selectedCategoryId);
 
     let difficultyOptions = ['easy', 'medium', 'hard', 'mixed'];
-    difficultyOptions = difficultyOptions.filter(option => option != this.difficulty());
+    difficultyOptions = difficultyOptions.filter(
+      (option) => option != this.difficulty()
+    );
     let difficultyIndex = Math.floor(Math.random() * difficultyOptions.length);
     this.difficulty.set(difficultyOptions[difficultyIndex]);
   }

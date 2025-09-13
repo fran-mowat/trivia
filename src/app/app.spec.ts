@@ -52,7 +52,7 @@ describe('App', () => {
   });
 
   it('should render the summary card', () => {
-    component.startSummary({score: 0, questionSummaries: []});
+    component.startSummary({ score: 0, questionSummaries: [] });
     fixture.detectChanges();
 
     expect(component.screenMode).toBe('review');

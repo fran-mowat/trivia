@@ -31,7 +31,10 @@ export class QuestionCard implements OnInit {
 
   questionService = inject(QuestionService);
 
-  triggerSummary = output<{score: number, questionSummaries: QuestionAnswerDetails[]}>();
+  triggerSummary = output<{
+    score: number;
+    questionSummaries: QuestionAnswerDetails[];
+  }>();
 
   ngOnInit() {
     this.questionService.getToken().subscribe((response) => {
@@ -87,9 +90,9 @@ export class QuestionCard implements OnInit {
       }
 
       const questionDetails = {
-        questionValue: this.questionValue, 
-        correctAnswer: this.answerValues[this.correctAnswerIndex], 
-        selectedAnswer: this.answerValues[answerNumber]
+        questionValue: this.questionValue,
+        correctAnswer: this.answerValues[this.correctAnswerIndex],
+        selectedAnswer: this.answerValues[answerNumber],
       };
 
       this.questionSummaries.push(questionDetails);

@@ -1,5 +1,5 @@
-export interface QuestionAnswerDetails{
-    questionValue: string; 
-    correctAnswer: string; 
-    selectedAnswer: string;
-};
+export interface QuestionAnswerDetails {
+  questionValue: string;
+  correctAnswer: string;
+  selectedAnswer: string;
+}

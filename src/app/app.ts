@@ -36,10 +36,13 @@ export class App {
     this.category = data.category;
   }
 
-  startSummary(data: {score: number; questionSummaries: QuestionAnswerDetails[]}) {
+  startSummary(data: {
+    score: number;
+    questionSummaries: QuestionAnswerDetails[];
+  }) {
     this.screenMode = 'review';
 
     this.score = data.score;
-    this.questionSummaries = data.questionSummaries; 
+    this.questionSummaries = data.questionSummaries;
   }
 }
